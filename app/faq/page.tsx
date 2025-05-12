@@ -1,4 +1,4 @@
-// page FAQ
+"use client";
 
 import { Accordion, AccordionItem } from "@heroui/accordion";
 import { Link } from "@heroui/link";
