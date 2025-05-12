@@ -8,7 +8,7 @@ import Section from "@/components/section";
 export default function Faq() {
   return (
     <Section className="px-8">
-      <h1 className="text-3xl text-primary font-dmSerifText text-center">
+      <h1 className="text-3xl text-primary font-dmSerifText text-center pb-6">
         Questions les plus fréquentes
       </h1>
       <div>
