@@ -9,9 +9,17 @@ const config = {
   ],
   theme: {
     extend: {
+      colors: {
+        primary: "#0E4346",
+        secondary: "#FFF2EA",
+        tertiary: "#EBDAD0",
+        quaternary: "#490FBD",
+        quinary: "#89DB0F",
+        danger: "#AF3830",
+      },
       fontFamily: {
-        sans: ["var(--font-sans)"],
-        mono: ["var(--font-mono)"],
+        beVietnamPro: ["var(--font-be-vietnam-pro)"],
+        dmSerifText: ["var(--font-dm-serif-text)"],
       },
     },
   },
