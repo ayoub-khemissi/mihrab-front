@@ -10,21 +10,17 @@ export default function Error({
   reset: () => void;
 }) {
   useEffect(() => {
-    // Log the error to an error reporting service
-    /* eslint-disable no-console */
+    // eslint-disable-next-line no-console
     console.error(error);
   }, [error]);
 
   return (
-    <div>
-      <h2>Something went wrong!</h2>
-      <button
-        onClick={
-          // Attempt to recover by trying to re-render the segment
-          () => reset()
-        }
-      >
-        Try again
+    <div className="flex flex-col items-center justify-center h-screen">
+      <h2 className="text-2xl font-bold text-primary">
+        Une erreur est survenue !
+      </h2>
+      <button className="mt-4" onClick={() => reset()}>
+        Reessayer
       </button>
     </div>
   );
