@@ -5,7 +5,7 @@ export type Mosque = {
   id: number;
   user_id: number;
   name: string;
-  picture: string;
+  picture: string | null;
   organization_name: string;
   address: string;
   city: string;
