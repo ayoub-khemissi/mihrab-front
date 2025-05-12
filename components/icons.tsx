@@ -1,27 +1,13 @@
 import * as React from "react";
+import Image from "next/image";
 
-import { IconSvgProps } from "@/types";
+import LogoMihrabDark from "@/public/assets/svg/logo-mihrab-dark.svg";
+import LogoMihrabLight from "@/public/assets/svg/logo-mihrab-light.svg";
 
-export const Logo: React.FC<IconSvgProps> = ({
-  size = 36,
-  width,
-  height,
-  ...props
+export const Logo: React.FC<{ type?: "dark" | "light" }> = ({
+  type = "dark",
 }) => (
-  <svg
-    fill="none"
-    height={size || height}
-    viewBox="0 0 32 32"
-    width={size || width}
-    {...props}
-  >
-    <path
-      clipRule="evenodd"
-      d="M17.6482 10.1305L15.8785 7.02583L7.02979 22.5499H10.5278L17.6482 10.1305ZM19.8798 14.0457L18.11 17.1983L19.394 19.4511H16.8453L15.1056 22.5499H24.7272L19.8798 14.0457Z"
-      fill="currentColor"
-      fillRule="evenodd"
-    />
-  </svg>
+  <Image alt="Logo" src={type === "dark" ? LogoMihrabDark : LogoMihrabLight} />
 );
 
 export const DiscordIcon: React.FC<IconSvgProps> = ({
@@ -182,6 +168,40 @@ export const SearchIcon = (props: IconSvgProps) => (
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth="2"
+    />
+  </svg>
+);
+
+export const CrossIcon = (props: IconSvgProps) => (
+  <svg
+    className="w-7 h-7 text-primary"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth={2}
+    viewBox="0 0 24 24"
+    {...props}
+  >
+    <path
+      d="M6 18L18 6M6 6l12 12"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
+export const MenuIcon = (props: IconSvgProps) => (
+  <svg
+    className="w-7 h-7 text-primary"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth={2}
+    viewBox="0 0 24 24"
+    {...props}
+  >
+    <path
+      d="M4 6h16M4 12h16M4 18h16"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
   </svg>
 );
