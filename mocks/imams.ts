@@ -9,9 +9,6 @@ import { ImamExperience } from "@/types/imam-experience";
 import { ImamWorkingHour } from "@/types/imam-working-hour";
 import { ImamQuranReading } from "@/types/imam-quran-reading";
 import { ImamContractType } from "@/types/imam-contract-type";
-import { constants } from "@/config/constants";
-
-const { PLACEHOLDER_IMG } = constants;
 
 export const mockImams: ImamProfile[] = [
   {
@@ -20,7 +17,7 @@ export const mockImams: ImamProfile[] = [
       email: "ahmed.bensalah@email.com",
       first_name: "Ahmed",
       last_name: "Ben Salah",
-      photo: PLACEHOLDER_IMG,
+      photo: null,
       created_at: 0,
       updated_at: 0,
     } as User,
@@ -129,7 +126,7 @@ export const mockImams: ImamProfile[] = [
       email: "youssef.elamrani@email.com",
       first_name: "Youssef",
       last_name: "El Amrani",
-      photo: PLACEHOLDER_IMG,
+      photo: null,
       created_at: 0,
       updated_at: 0,
     } as User,
@@ -233,7 +230,7 @@ export const mockImams: ImamProfile[] = [
       email: "omar.bouzid@email.com",
       first_name: "Omar",
       last_name: "Bouzid",
-      photo: PLACEHOLDER_IMG,
+      photo: null,
       created_at: 0,
       updated_at: 0,
     } as User,
