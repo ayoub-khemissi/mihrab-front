@@ -4,7 +4,7 @@ import { Logo } from "./icons";
 
 export const Footer = () => {
   return (
-    <footer className="container mx-auto max-w-7xl relative w-full bg-gradient-to-b from-primary via-primary to-primary py-14 px-4 md:px-8 mt-12 rounded-xl shadow-lg overflow-hidden my-10">
+    <footer className="container mx-auto max-w-7xl relative w-full bg-gradient-to-b from-primary via-primary to-primary py-14 px-8 mt-12 rounded-xl shadow-lg overflow-hidden my-10">
       <div className="absolute left-0 top-0 h-full w-full bg-[url('/assets/svg/bg-flowers-light.svg')] opacity-10 bg-cover bg-center z-0 pointer-events-none" />
       <div className="relative z-10 max-w-7xl mx-auto flex flex-col md:flex-row md:items-start gap-10 justify-between">
         <div className="flex flex-col items-center md:items-start gap-3 flex-1 min-w-[180px]">
