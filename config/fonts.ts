@@ -1,11 +1,13 @@
-import { Fira_Code as FontMono, Inter as FontSans } from "next/font/google";
+import { Be_Vietnam_Pro, DM_Serif_Text } from "next/font/google";
 
-export const fontSans = FontSans({
+export const fontBeVietnamPro = Be_Vietnam_Pro({
   subsets: ["latin"],
-  variable: "--font-sans",
+  variable: "--font-be-vietnam-pro",
+  weight: ["400", "500", "700", "900"],
 });
 
-export const fontMono = FontMono({
+export const fontDMSerifText = DM_Serif_Text({
   subsets: ["latin"],
-  variable: "--font-mono",
+  variable: "--font-dm-serif-text",
+  weight: ["400"],
 });
