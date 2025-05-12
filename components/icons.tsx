@@ -10,6 +10,12 @@ export const Logo: React.FC<{ type?: "dark" | "light" }> = ({
   <Image alt="Logo" src={type === "dark" ? LogoMihrabDark : LogoMihrabLight} />
 );
 
+type IconSvgProps = {
+  size?: number;
+  width?: number;
+  height?: number;
+};
+
 export const DiscordIcon: React.FC<IconSvgProps> = ({
   size = 24,
   width,
