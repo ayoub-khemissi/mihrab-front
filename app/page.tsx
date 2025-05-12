@@ -247,7 +247,7 @@ export default function Home() {
             Mosquée
           </Button>
         </div>
-        <div className="flex justify-center flex-wrap gap-6 text-primary z-10">
+        <div className="flex w-full justify-evenly items-center flex-wrap gap-6 text-primary z-10">
           {profileSelected === "imam" ? (
             <>
               <div className="max-w-[370px] p-8 bg-primary rounded-md text-secondary space-y-4">
