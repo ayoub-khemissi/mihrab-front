@@ -24,5 +24,5 @@ export type ImamProfile = {
   zones: ImamZone[];
 
   created_at: number;
-  updated_at: number;
+  updated_at: number | null;
 };

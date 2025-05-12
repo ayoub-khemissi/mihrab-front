@@ -8,5 +8,5 @@ export type MosqueManagerProfile = {
   position: "president" | "secretary" | "treasurer" | "mosque_manager";
   mosque_manager_likes: MosqueManagerLike[];
   created_at: number;
-  updated_at: number;
+  updated_at: number | null;
 };

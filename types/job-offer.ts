@@ -23,5 +23,5 @@ export type JobOffer = {
   working_hours: JobOfferWorkingHour[];
 
   created_at: number;
-  updated_at: number;
+  updated_at: number | null;
 };

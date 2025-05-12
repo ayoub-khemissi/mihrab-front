@@ -5,5 +5,5 @@ export type ImamDiploma = {
   year_obtained: number;
   description: string;
   created_at: number;
-  updated_at: number;
+  updated_at: number | null;
 };

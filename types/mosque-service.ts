@@ -8,5 +8,5 @@ export type MosqueService = {
     | "parking"
     | "aid_prayer";
   created_at: number;
-  updated_at: number;
+  updated_at: number | null;
 };

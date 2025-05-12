@@ -6,5 +6,5 @@ export type ImamZone = {
   latitude: number;
   longitude: number;
   created_at: number;
-  updated_at: number;
+  updated_at: number | null;
 };

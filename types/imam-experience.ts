@@ -8,5 +8,5 @@ export type ImamExperience = {
   start_date: number;
   end_date: number;
   created_at: number;
-  updated_at: number;
+  updated_at: number | null;
 };

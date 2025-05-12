@@ -7,5 +7,5 @@ export type Invitation = {
   message: string;
   status: "pending" | "accepted" | "declined";
   created_at: number;
-  updated_at: number;
+  updated_at: number | null;
 };

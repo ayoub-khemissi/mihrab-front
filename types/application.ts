@@ -7,5 +7,5 @@ export type Application = {
   status: "pending" | "rejected" | "interview" | "accepted";
   message: string;
   created_at: number;
-  updated_at: number;
+  updated_at: number | null;
 };

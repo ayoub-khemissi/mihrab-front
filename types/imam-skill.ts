@@ -8,5 +8,5 @@ export type ImamSkill = {
     | "conferences"
     | "questions_answers";
   created_at: number;
-  updated_at: number;
+  updated_at: number | null;
 };

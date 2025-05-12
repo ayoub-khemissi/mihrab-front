@@ -8,5 +8,5 @@ export type Notification = {
   url: string;
   is_read: boolean;
   created_at: number;
-  updated_at: number;
+  updated_at: number | null;
 };

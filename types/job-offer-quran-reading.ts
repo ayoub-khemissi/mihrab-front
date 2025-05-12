@@ -11,5 +11,5 @@ export type JobOfferQuranReading = {
   tajweed_mastery: boolean;
   ijazah: boolean;
   created_at: number;
-  updated_at: number;
+  updated_at: number | null;
 };

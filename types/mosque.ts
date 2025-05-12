@@ -20,5 +20,5 @@ export type Mosque = {
   services: MosqueService[];
   social_media: MosqueSocialMedia[];
   created_at: number;
-  updated_at: number;
+  updated_at: number | null;
 };
