@@ -98,7 +98,7 @@ export default function ClosestImams() {
             <div className="flex items-center w-full justify-between mb-4">
               <div className="flex items-center gap-3">
                 <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center overflow-hidden">
-                  {!imam.user.photo ? (
+                  {imam.user.photo ? (
                     <Image
                       alt={fullName}
                       className="w-12 h-12 object-cover rounded-full"

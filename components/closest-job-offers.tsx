@@ -5,6 +5,7 @@ import {
   FaLanguage,
   FaMoneyBill,
 } from "react-icons/fa6";
+import { FaMosque } from "react-icons/fa6";
 
 import { mockJobOffers } from "@/mocks/job-offers";
 import { JobOffer } from "@/types/job-offer";
@@ -91,14 +92,18 @@ export default function ClosestJobOffers() {
             className="bg-secondary rounded-xl shadow-md flex flex-col w-full max-w-md p-6 gap-4 items-start border border-gray-200 hover:shadow-lg transition-shadow relative"
           >
             <div className="flex justify-between gap-4 w-full">
-              <div className="flex-shrink-0">
-                <Image
-                  alt={mosque?.name || "Mosquée"}
-                  className="w-16 h-16 object-cover rounded-full border border-gray-100 bg-gray-50"
-                  height={64}
-                  src={mosque?.picture || ""}
-                  width={64}
-                />
+              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center overflow-hidden">
+                {mosque.picture ? (
+                  <Image
+                    alt={mosque.name || "Mosquée"}
+                    className="w-12 h-12 object-cover rounded-full border border-gray-100 bg-gray-50"
+                    height={48}
+                    src={mosque.picture}
+                    width={48}
+                  />
+                ) : (
+                  <FaMosque className="w-6 h-6 text-primary" />
+                )}
               </div>
               <div className="flex-1 flex flex-col gap-1">
                 <div className="flex items-start justify-between w-full">
@@ -114,7 +119,7 @@ export default function ClosestJobOffers() {
                 <div className="flex items-center text-sm text-primary gap-2">
                   <FaLocationDot className="w-4 h-4" />
                   <span>
-                    {mosque?.city} ({mosque?.zip_code?.substring(0, 2)})
+                    {mosque.city} ({mosque.zip_code.substring(0, 2)})
                   </span>
                 </div>
                 <div className="flex items-center text-sm text-primary gap-2">
