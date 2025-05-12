@@ -1,14 +1,11 @@
 import { Mosque } from "@/types/mosque";
-import { constants } from "@/config/constants";
-
-const { PLACEHOLDER_IMG } = constants;
 
 export const mockMosques: Mosque[] = [
   {
     id: 1,
     user_id: 1,
     name: "Mosquée de la Paix",
-    picture: PLACEHOLDER_IMG,
+    picture: null,
     organization_name: "Association Paix",
     address: "123 Rue de la Mosquée",
     city: "Paris",
@@ -22,12 +19,27 @@ export const mockMosques: Mosque[] = [
     supporting_document: "",
     created_at: 0,
     updated_at: 0,
+    services: [
+      {
+        service_name: "ablutions",
+        created_at: 0,
+        updated_at: 0,
+      },
+    ],
+    social_media: [
+      {
+        platform: "website",
+        url: "https://www.mosque.com",
+        created_at: 0,
+        updated_at: 0,
+      },
+    ],
   },
   {
     id: 2,
     user_id: 2,
     name: "Mosquée Ennour",
-    picture: PLACEHOLDER_IMG,
+    picture: null,
     organization_name: "Association Ennour",
     address: "45 Avenue des Fleurs",
     city: "Lyon",
@@ -41,12 +53,32 @@ export const mockMosques: Mosque[] = [
     supporting_document: "",
     created_at: 0,
     updated_at: 0,
+    services: [
+      {
+        service_name: "ablutions",
+        created_at: 0,
+        updated_at: 0,
+      },
+      {
+        service_name: "women_space",
+        created_at: 0,
+        updated_at: 0,
+      },
+    ],
+    social_media: [
+      {
+        platform: "website",
+        url: "https://www.mosque.com",
+        created_at: 0,
+        updated_at: 0,
+      },
+    ],
   },
   {
     id: 3,
     user_id: 3,
     name: "Mosquée Al Qods",
-    picture: PLACEHOLDER_IMG,
+    picture: null,
     organization_name: "Association Al Qods",
     address: "78 Boulevard Central",
     city: "Marseille",
@@ -60,5 +92,25 @@ export const mockMosques: Mosque[] = [
     supporting_document: "",
     created_at: 0,
     updated_at: 0,
+    services: [
+      {
+        service_name: "ablutions",
+        created_at: 0,
+        updated_at: 0,
+      },
+      {
+        service_name: "women_space",
+        created_at: 0,
+        updated_at: 0,
+      },
+    ],
+    social_media: [
+      {
+        platform: "website",
+        url: "https://www.mosque.com",
+        created_at: 0,
+        updated_at: 0,
+      },
+    ],
   },
 ];
