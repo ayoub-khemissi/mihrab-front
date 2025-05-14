@@ -49,7 +49,7 @@ export default function Faq() {
           >
             <p className="text-primary">
               Nous sélectionnons les profils qui correspondent aux critères que
-              vous avez renseignés lors de votre inscription. Nous vérifions
+              vous avez renseigné lors de votre inscription. Nous vérifions
               également les profils des imams et des mosquées pour vous assurer
               des matchs pertinents et de qualité.
             </p>
