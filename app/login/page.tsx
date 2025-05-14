@@ -15,7 +15,7 @@ export default function Login() {
 
   return (
     <Section className="flex h-screen w-full gap-12">
-      <div className="flex flex-col justify-center items-center py-10 h-full xl:w-1/2 w-full">
+      <div className="flex flex-col items-center py-10 h-full xl:w-1/2 w-full mt-24">
         <h1 className="text-4xl md:text-4xl text-primary font-dmSerifText mb-8 text-left w-full max-w-md">
           Se connecter
         </h1>
