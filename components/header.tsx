@@ -8,15 +8,34 @@ import {
 import NextLink from "next/link";
 import clsx from "clsx";
 import { Button } from "@heroui/button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "@heroui/link";
+import { useRouter, useSearchParams } from "next/navigation";
 
 import { CrossIcon, Logo, MenuIcon } from "@/components/icons";
 
 export const Header = () => {
-  const [profileSelected, setProfileSelected] = useState("mosque");
+  const searchParams = useSearchParams();
+  const [profileSelected, setProfileSelected] = useState(
+    (searchParams.get("profile") as "imam" | "mosque") || "mosque",
+  );
+
+  const router = useRouter();
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const handleProfileChange = (profile: "imam" | "mosque") => {
+    setProfileSelected(profile);
+    router.push(`/?profile=${profile}`, { scroll: false });
+  };
+
+  useEffect(() => {
+    const profile = searchParams.get("profile");
+
+    if (profile) {
+      setProfileSelected(profile as "imam" | "mosque");
+    }
+  }, [searchParams]);
 
   return (
     <>
@@ -43,7 +62,9 @@ export const Header = () => {
                   ? "bg-primary text-secondary font-medium"
                   : "bg-transparent text-primary",
               )}
-              onPress={() => setProfileSelected("imam")}
+              onPress={() => {
+                handleProfileChange("imam");
+              }}
             >
               Je suis Imam
             </Button>
@@ -54,7 +75,9 @@ export const Header = () => {
                   ? "bg-primary text-secondary font-medium"
                   : "bg-transparent text-primary",
               )}
-              onPress={() => setProfileSelected("mosque")}
+              onPress={() => {
+                handleProfileChange("mosque");
+              }}
             >
               Je suis une Mosquée
             </Button>

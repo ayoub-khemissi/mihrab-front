@@ -2,8 +2,10 @@
 
 import { Button } from "@heroui/button";
 import clsx from "clsx";
-import { useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 import Faq from "./faq/page";
 
@@ -11,77 +13,92 @@ import Section from "@/components/section";
 import ClosestImams from "@/components/closest-imams";
 import ClosestJobOffers from "@/components/closest-job-offers";
 
+const howItWorksTexts = {
+  imam: [
+    {
+      step: (
+        <>
+          Étape <span className="text-3xl">١</span>
+        </>
+      ),
+      title: "Je créé mon compte",
+      description:
+        "Je renseigne mes informations d'identité générales ainsi que mes préférences de mission",
+    },
+    {
+      step: (
+        <>
+          Étape <span className="text-3xl">٢</span>
+        </>
+      ),
+      title: "Je consulte les missions",
+      description:
+        "Je consulte les missions qui m'intéressent et qui me correspondent",
+    },
+    {
+      step: (
+        <>
+          Étape <span className="text-3xl">٣</span>
+        </>
+      ),
+      title: "Je postule",
+      description:
+        "Je réponds aux offres d'emploi afin d'être mis en relation avec un Responsable de Mosquée",
+    },
+  ],
+  mosque: [
+    {
+      step: (
+        <>
+          Étape <span className="text-3xl">١</span>
+        </>
+      ),
+      title: "Je créé mon compte",
+      description:
+        "Je renseigne mes informations d’identité générales ainsi que celle de ma mosquée",
+    },
+    {
+      step: (
+        <>
+          Étape <span className="text-3xl">٢</span>
+        </>
+      ),
+      title: "Je rédige l'offre d'emploi",
+      description:
+        "Je détaille les missions, le profil et l'expérience requise...",
+    },
+    {
+      step: (
+        <>
+          Étape <span className="text-3xl">٣</span>
+        </>
+      ),
+      title: "Je gère mes candidatures",
+      description:
+        "Je trie les candidatures et organise des entretiens avec les profils retenus",
+    },
+  ],
+};
+
 export default function Home() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const [profileSelected, setProfileSelected] = useState<"imam" | "mosque">(
-    "imam",
+    (searchParams.get("profile") as "imam" | "mosque") || "imam",
   );
 
-  const howItWorksTexts = {
-    imam: [
-      {
-        step: (
-          <>
-            Étape <span className="text-3xl">١</span>
-          </>
-        ),
-        title: "Je créé mon compte",
-        description:
-          "Je renseigne mes informations d'identité générales ainsi que mes préférences de mission",
-      },
-      {
-        step: (
-          <>
-            Étape <span className="text-3xl">٢</span>
-          </>
-        ),
-        title: "Je consulte les missions",
-        description:
-          "Je consulte les missions qui m'intéressent et qui me correspondent",
-      },
-      {
-        step: (
-          <>
-            Étape <span className="text-3xl">٣</span>
-          </>
-        ),
-        title: "Je postule",
-        description:
-          "Je réponds aux offres d'emploi afin d'être mis en relation avec un Responsable de Mosquée",
-      },
-    ],
-    mosque: [
-      {
-        step: (
-          <>
-            Étape <span className="text-3xl">١</span>
-          </>
-        ),
-        title: "Je créé mon compte",
-        description:
-          "Je renseigne mes informations d’identité générales ainsi que celle de ma mosquée",
-      },
-      {
-        step: (
-          <>
-            Étape <span className="text-3xl">٢</span>
-          </>
-        ),
-        title: "Je rédige l'offre d'emploi",
-        description:
-          "Je détaille les missions, le profil et l'expérience requise...",
-      },
-      {
-        step: (
-          <>
-            Étape <span className="text-3xl">٣</span>
-          </>
-        ),
-        title: "Je gère mes candidatures",
-        description:
-          "Je trie les candidatures et organise des entretiens avec les profils retenus",
-      },
-    ],
+  const handleProfileChange = (profile: "imam" | "mosque") => {
+    setProfileSelected(profile);
+    router.push(`/?profile=${profile}`, { scroll: false });
   };
+
+  useEffect(() => {
+    const profile = searchParams.get("profile");
+
+    if (profile) {
+      setProfileSelected(profile as "imam" | "mosque");
+    }
+  }, [searchParams]);
 
   return (
     <div className="flex flex-col gap-16 py-10 mt-24">
@@ -104,7 +121,7 @@ export default function Home() {
                   : "bg-transparent text-primary",
               )}
               onPress={() => {
-                setProfileSelected("imam");
+                handleProfileChange("imam");
                 window.scrollTo({
                   top: document.getElementById("how-it-works")!.offsetTop,
                   behavior: "smooth",
@@ -121,7 +138,7 @@ export default function Home() {
                   : "bg-transparent text-primary",
               )}
               onPress={() => {
-                setProfileSelected("mosque");
+                handleProfileChange("mosque");
                 window.scrollTo({
                   top: document.getElementById("how-it-works")!.offsetTop,
                   behavior: "smooth",
@@ -150,7 +167,7 @@ export default function Home() {
                 ? "bg-primary text-secondary font-medium"
                 : "bg-transparent text-primary",
             )}
-            onPress={() => setProfileSelected("imam")}
+            onPress={() => handleProfileChange("imam")}
           >
             Imam
           </Button>
@@ -161,7 +178,7 @@ export default function Home() {
                 ? "bg-primary text-secondary font-medium"
                 : "bg-transparent text-primary",
             )}
-            onPress={() => setProfileSelected("mosque")}
+            onPress={() => handleProfileChange("mosque")}
           >
             Mosquée
           </Button>
@@ -198,7 +215,7 @@ export default function Home() {
                 ? "bg-primary text-secondary font-medium"
                 : "bg-transparent text-primary",
             )}
-            onPress={() => setProfileSelected("imam")}
+            onPress={() => handleProfileChange("imam")}
           >
             Je cherche une Mission
           </Button>
@@ -209,7 +226,7 @@ export default function Home() {
                 ? "bg-primary text-secondary font-medium"
                 : "bg-transparent text-primary",
             )}
-            onPress={() => setProfileSelected("mosque")}
+            onPress={() => handleProfileChange("mosque")}
           >
             Je cherche un Imam
           </Button>
@@ -231,7 +248,7 @@ export default function Home() {
                 ? "bg-primary text-secondary font-medium"
                 : "bg-transparent text-primary",
             )}
-            onPress={() => setProfileSelected("imam")}
+            onPress={() => handleProfileChange("imam")}
           >
             Imam
           </Button>
@@ -242,7 +259,7 @@ export default function Home() {
                 ? "bg-primary text-secondary font-medium"
                 : "bg-transparent text-primary",
             )}
-            onPress={() => setProfileSelected("mosque")}
+            onPress={() => handleProfileChange("mosque")}
           >
             Mosquée
           </Button>
