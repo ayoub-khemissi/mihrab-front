@@ -6,6 +6,7 @@ import {
   FaMoneyBill,
 } from "react-icons/fa6";
 import { FaMosque } from "react-icons/fa6";
+import clsx from "clsx";
 
 import { mockJobOffers } from "@/mocks/job-offers";
 import { JobOffer } from "@/types/job-offer";
@@ -110,11 +111,14 @@ export default function ClosestJobOffers() {
                   <span className="font-dmSerifText text-lg text-primary text-left">
                     {jobOffer.title}
                   </span>
-                  {urgent && (
-                    <span className="bg-danger font-semibold text-secondary text-xs p-3 rounded-md ml-2 uppercase">
-                      Urgent
-                    </span>
-                  )}
+                  <span
+                    className={clsx(
+                      `bg-danger font-semibold text-secondary text-xs p-3 rounded-md ml-2 uppercase`,
+                      urgent ? "visible" : "invisible",
+                    )}
+                  >
+                    Urgent
+                  </span>
                 </div>
                 <div className="flex items-center text-sm text-primary gap-2">
                   <FaLocationDot className="w-4 h-4" />
