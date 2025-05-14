@@ -21,9 +21,8 @@ export const Header = () => {
   return (
     <>
       <HeroUINavbar
-        className="py-4 bg-secondary"
+        className="py-4 bg-secondary fixed top-0 z-50 w-full h-24"
         maxWidth="xl"
-        position="sticky"
       >
         <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
           <NavbarBrand as="li" className="gap-3 max-w-fit">

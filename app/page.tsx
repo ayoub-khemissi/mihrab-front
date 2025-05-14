@@ -84,7 +84,7 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col gap-16 py-10">
+    <div className="flex flex-col gap-16 py-10 mt-24">
       <Section
         className="relative flex flex-col justify-center p-14 w-full min-h-[500px] rounded-xl bg-[url('/assets/bg/mosque-inside.jpg')] bg-cover bg-center shadow-lg"
         id="top"
