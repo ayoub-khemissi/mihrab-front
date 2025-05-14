@@ -1,32 +1,16 @@
+"use client";
+
 import "@/styles/globals.css";
-import { Metadata, Viewport } from "next";
 import clsx from "clsx";
+import { Suspense } from "react";
 
 import { Providers } from "./providers";
 
-import { siteConfig } from "@/config/site";
 import { fontBeVietnamPro, fontDMSerifText } from "@/config/fonts";
 import { Header } from "@/components/header";
 import Container from "@/components/container";
 import { Footer } from "@/components/footer";
-
-export const metadata: Metadata = {
-  title: {
-    default: siteConfig.name,
-    template: `%s | ${siteConfig.name}`,
-  },
-  description: siteConfig.description,
-  icons: {
-    icon: "/favicon.ico",
-  },
-};
-
-export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "white" },
-    { media: "(prefers-color-scheme: dark)", color: "black" },
-  ],
-};
+import Loading from "@/components/loading";
 
 export default function RootLayout({
   children,
@@ -35,7 +19,19 @@ export default function RootLayout({
 }) {
   return (
     <html suppressHydrationWarning lang="en">
-      <head />
+      <head>
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <meta content="#FFF2EA" name="theme-color" />
+        <meta
+          content="Mihrab - Plateforme de gestion des imams et mosquées"
+          name="description"
+        />
+        <meta content="Mihrab" name="author" />
+        <meta
+          content="Mihrab, imams, mosquées, gestion, emploi, imam, mosquée, mosque, relations mosquées"
+          name="keywords"
+        />
+      </head>
       <body
         className={clsx(
           "min-h-screen bg-secondary font-beVietnamPro antialiased",
@@ -44,11 +40,13 @@ export default function RootLayout({
         )}
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "light" }}>
-          <div className="relative flex flex-col">
-            <Header />
-            <Container>{children}</Container>
-            <Footer />
-          </div>
+          <Suspense fallback={<Loading />}>
+            <div className="relative flex flex-col">
+              <Header />
+              <Container>{children}</Container>
+              <Footer />
+            </div>
+          </Suspense>
         </Providers>
       </body>
     </html>
