@@ -11,6 +11,7 @@ import { Header } from "@/components/header";
 import Container from "@/components/container";
 import { Footer } from "@/components/footer";
 import Loading from "@/components/loading";
+import ScrollToTop from "@/components/scroll-to-top";
 
 export default function RootLayout({
   children,
@@ -18,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="fr">
+    <html className="scroll-smooth text-balance" lang="fr">
       <head>
         <title>
           Mihrab | Plateforme de recherche d&apos;emploi pour Imams et Mosquées
@@ -47,6 +48,7 @@ export default function RootLayout({
             <Header />
             <Container>{children}</Container>
             <Footer />
+            <ScrollToTop />
           </Suspense>
         </Providers>
       </body>
