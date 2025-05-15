@@ -37,7 +37,7 @@ export const Header = () => {
   }, [searchParams]);
 
   return (
-    <>
+    <div className="container mx-auto max-w-7xl">
       <HeroUINavbar
         className="py-4 bg-secondary fixed top-0 z-50 w-full xl:h-24 h-16"
         maxWidth="xl"
@@ -95,10 +95,10 @@ export const Header = () => {
       </HeroUINavbar>
       {mobileMenuOpen && (
         <div className="fixed top-0 z-40 flex md:hidden w-full h-full">
-          <nav className="bg-primary/90 text-secondary w-full h-full flex flex-col items-center justify-center gap-6 p-8">
-            <div>
+          <nav className="bg-primary/95 text-secondary w-full h-full flex flex-col items-center justify-center">
+            <div className="flex flex-col justify-center items-center text-center gap-6">
               <Link
-                className="text-secondary text-2xl font-medium w-full"
+                className="text-secondary text-2xl font-medium"
                 href="/login"
                 onClick={() => setMobileMenuOpen(false)}
               >
@@ -108,6 +108,6 @@ export const Header = () => {
           </nav>
         </div>
       )}
-    </>
+    </div>
   );
 };
