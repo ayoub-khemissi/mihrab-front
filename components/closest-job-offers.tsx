@@ -92,8 +92,8 @@ export default function ClosestJobOffers() {
             key={jobOffer.id}
             className="bg-secondary rounded-xl shadow-md flex flex-col w-full max-w-md p-6 gap-4 items-start border border-gray-200 hover:shadow-lg transition-shadow relative"
           >
-            <div className="flex justify-between gap-4 w-full">
-              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center overflow-hidden">
+            <div className="flex gap-4 w-full">
+              <div className="min-w-12 min-h-12 max-w-12 max-h-12 rounded-full bg-primary/10 flex items-center justify-center overflow-hidden">
                 {mosque.picture ? (
                   <Image
                     alt={mosque.name || "Mosquée"}
@@ -106,14 +106,14 @@ export default function ClosestJobOffers() {
                   <FaMosque className="w-6 h-6 text-primary" />
                 )}
               </div>
-              <div className="flex flex-col gap-1">
+              <div className="flex justify-between w-full flex-col gap-1">
                 <div className="flex items-start justify-between w-full">
                   <span className="font-dmSerifText text-lg text-primary text-left">
                     {jobOffer.title}
                   </span>
                   <span
                     className={clsx(
-                      `bg-danger font-semibold text-secondary text-xs p-3 rounded-md ml-2 uppercase`,
+                      `bg-danger font-semibold text-secondary text-xs py-2 px-3 rounded-md ml-2 uppercase`,
                       urgent ? "visible" : "invisible",
                     )}
                   >
