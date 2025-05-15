@@ -100,7 +100,7 @@ export default function Home() {
   }, [searchParams]);
 
   return (
-    <div className="flex flex-col gap-16 pt-32 pb-20 w-full">
+    <div className="flex flex-col gap-16 pt-32 pb-16 w-full">
       <Section
         className="relative flex flex-col justify-center w-full min-h-[500px] xl:rounded-xl bg-[url('/assets/bg/mosque-inside.jpg')] bg-cover bg-center shadow-lg overflow-hidden"
         id="top"

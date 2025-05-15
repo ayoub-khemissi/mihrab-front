@@ -10,7 +10,7 @@ export default function FaqPage() {
         content="Questions les plus fréquentes sur Mihrab"
         name="description"
       />
-      <div className="min-h-screen flex pt-32 pb-20 w-full gap-12">
+      <div className="min-h-screen flex w-full gap-12">
         <Faq />
       </div>
     </>
