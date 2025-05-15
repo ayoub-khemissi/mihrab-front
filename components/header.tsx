@@ -16,7 +16,7 @@ import { CrossIcon, Logo, MenuIcon } from "@/components/icons";
 export const Header = () => {
   const searchParams = useSearchParams();
   const [profileSelected, setProfileSelected] = useState(
-    (searchParams.get("profile") as "imam" | "mosque") || "mosque",
+    (searchParams.get("profile") as "imam" | "mosque") || "imam",
   );
 
   const router = useRouter();
