@@ -102,10 +102,10 @@ export default function Home() {
   return (
     <div className="flex flex-col gap-16 pt-32 pb-20 w-full">
       <Section
-        className="relative flex flex-col justify-center w-full min-h-[500px] rounded-xl bg-[url('/assets/bg/mosque-inside.jpg')] bg-cover bg-center shadow-lg"
+        className="relative flex flex-col justify-center w-full min-h-[500px] xl:rounded-xl bg-[url('/assets/bg/mosque-inside.jpg')] bg-cover bg-center shadow-lg overflow-hidden"
         id="top"
       >
-        <div className="absolute left-0 top-0 h-full w-full rounded-xl bg-gradient-to-r from-primary to-transparent z-0 pointer-events-none" />
+        <div className="absolute left-0 top-0 h-full w-full bg-gradient-to-r from-primary to-transparent z-0 pointer-events-none" />
         <div className="relative z-10 space-y-4">
           <h1 className={clsx("text-4xl text-secondary font-dmSerifText")}>
             La Plateforme de recherche <br />
@@ -151,7 +151,7 @@ export default function Home() {
       </Section>
 
       <Section
-        className="relative flex flex-col items-center gap-y-10 justify-center w-full min-h-[700px] bg-gradient-to-b from-primary via-primary to-primary rounded-xl shadow-lg"
+        className="relative flex flex-col items-center gap-y-10 justify-center w-full min-h-[700px] xl:rounded-xl bg-gradient-to-b from-primary via-primary to-primary shadow-lg"
         id="how-it-works"
       >
         <div className="absolute left-0 top-0 h-full w-full rounded-xl bg-[url('/assets/svg/bg-flowers-light.svg')] opacity-10 bg-cover bg-center z-0 pointer-events-none" />
@@ -234,7 +234,7 @@ export default function Home() {
           {profileSelected === "imam" ? <ClosestJobOffers /> : <ClosestImams />}
         </div>
       </Section>
-      <Section className="relative flex flex-col items-center rounded-xl gap-y-10 justify-center min-h-[700px] bg-tertiary overflow-hidden">
+      <Section className="relative flex flex-col items-center xl:rounded-xl gap-y-10 justify-center min-h-[700px] bg-tertiary overflow-hidden">
         <div className="absolute left-0 top-0 h-full w-full bg-[url('/assets/svg/bg-flowers-light.svg')] opacity-80 bg-cover bg-center z-0 pointer-events-none" />
         <h2 className="text-center relative z-10 text-3xl text-primary font-dmSerifText">
           Pourquoi avoir recours à Mihrab ?
