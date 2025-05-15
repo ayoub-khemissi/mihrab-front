@@ -7,7 +7,11 @@ import LogoMihrabLight from "@/public/assets/svg/logo-mihrab-light.svg";
 export const Logo: React.FC<{ type?: "dark" | "light" }> = ({
   type = "dark",
 }) => (
-  <Image alt="Logo" src={type === "dark" ? LogoMihrabDark : LogoMihrabLight} />
+  <Image
+    alt="Logo"
+    className="xl:w-40 w-28"
+    src={type === "dark" ? LogoMihrabDark : LogoMihrabLight}
+  />
 );
 
 type IconSvgProps = {
