@@ -39,7 +39,7 @@ export const Header = () => {
   return (
     <>
       <HeroUINavbar
-        className="py-4 bg-secondary fixed top-0 z-50 w-full h-24"
+        className="py-4 bg-secondary fixed top-0 z-50 w-full xl:h-24 h-16"
         maxWidth="xl"
       >
         <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
@@ -94,7 +94,7 @@ export const Header = () => {
         </NavbarContent>
       </HeroUINavbar>
       {mobileMenuOpen && (
-        <div className="sticky top-0 z-50 flex md:hidden w-full h-full">
+        <div className="fixed top-0 z-40 flex md:hidden w-full h-full">
           <nav className="bg-primary/90 text-secondary w-full h-full flex flex-col items-center justify-center gap-6 p-8">
             <div>
               <Link
