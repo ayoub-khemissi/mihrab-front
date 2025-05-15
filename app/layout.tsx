@@ -18,34 +18,35 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html suppressHydrationWarning lang="en">
+    <html lang="fr">
       <head>
+        <title>
+          Mihrab | Plateforme de recherche d&apos;emploi pour Imams et Mosquées
+        </title>
         <meta content="width=device-width, initial-scale=1" name="viewport" />
         <meta content="#FFF2EA" name="theme-color" />
         <meta
-          content="Mihrab - Plateforme de gestion des imams et mosquées"
+          content="Mihrab - Plateforme de recherche d'emploi pour Imams et Mosquées"
           name="description"
         />
         <meta content="Mihrab" name="author" />
         <meta
-          content="Mihrab, imams, mosquées, gestion, emploi, imam, mosquée, mosque, relations mosquées"
+          content="Mihrab, imams, mosquées, recherche, emploi, imam, mosquée, mosque, relations mosquées"
           name="keywords"
         />
       </head>
       <body
         className={clsx(
-          "min-h-screen bg-secondary font-beVietnamPro antialiased",
+          "bg-secondary font-beVietnamPro antialiased",
           fontBeVietnamPro.variable,
           fontDMSerifText.variable,
         )}
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "light" }}>
           <Suspense fallback={<Loading />}>
-            <div className="relative flex flex-col">
-              <Header />
-              <Container>{children}</Container>
-              <Footer />
-            </div>
+            <Header />
+            <Container>{children}</Container>
+            <Footer />
           </Suspense>
         </Providers>
       </body>
