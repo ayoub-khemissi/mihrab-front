@@ -19,7 +19,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html className="scroll-smooth text-balance" lang="fr">
+    <html
+      className="scroll-smooth text-balance light"
+      lang="fr"
+      style={{ colorScheme: "light" }}
+    >
       <head>
         <title>
           Mihrab | Plateforme de recherche d&apos;emploi pour Imams et Mosquées
