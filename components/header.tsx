@@ -104,6 +104,20 @@ export const Header = () => {
               >
                 Se connecter
               </Link>
+              <Link
+                className="text-secondary text-2xl font-medium"
+                href="/contact"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Contact
+              </Link>
+              <Link
+                className="text-secondary text-2xl font-medium"
+                href="/faq"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                FAQ
+              </Link>
             </div>
           </nav>
         </div>
