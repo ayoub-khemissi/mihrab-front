@@ -106,7 +106,7 @@ export default function ClosestJobOffers() {
                   <FaMosque className="w-6 h-6 text-primary" />
                 )}
               </div>
-              <div className="flex-1 flex flex-col gap-1">
+              <div className="flex flex-col gap-1">
                 <div className="flex items-start justify-between w-full">
                   <span className="font-dmSerifText text-lg text-primary text-left">
                     {jobOffer.title}

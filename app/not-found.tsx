@@ -6,8 +6,8 @@ import Section from "@/components/section";
 
 export default function NotFound() {
   return (
-    <div className="flex flex-col flex-1 w-full min-h-screen">
-      <Section className="flex flex-1 h-full min-h-0 flex-col items-center justify-center w-full">
+    <div className="flex flex-col w-full min-h-screen">
+      <Section className="flex h-full min-h-0 flex-col items-center justify-center w-full">
         <h1 className="text-3xl text-primary font-dmSerifText text-center">
           Page non trouvée
         </h1>

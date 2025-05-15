@@ -7,8 +7,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-import Faq from "./faq/page";
-
+import Faq from "@/components/faq";
 import Section from "@/components/section";
 import ClosestImams from "@/components/closest-imams";
 import ClosestJobOffers from "@/components/closest-job-offers";
@@ -101,7 +100,7 @@ export default function Home() {
   }, [searchParams]);
 
   return (
-    <div className="flex flex-col gap-16 py-10 mt-24">
+    <div className="flex flex-col gap-16 pt-32 pb-20 w-full">
       <Section
         className="relative flex flex-col justify-center p-14 w-full min-h-[500px] rounded-xl bg-[url('/assets/bg/mosque-inside.jpg')] bg-cover bg-center shadow-lg"
         id="top"

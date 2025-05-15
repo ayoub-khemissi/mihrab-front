@@ -98,7 +98,7 @@ export const Header = () => {
         </NavbarContent>
       </HeroUINavbar>
       {mobileMenuOpen && (
-        <div className="fixed z-20 flex md:hidden w-full h-full">
+        <div className="sticky top-0 z-50 flex md:hidden w-full h-full">
           <nav className="bg-primary/90 text-secondary w-full h-full flex flex-col items-center justify-center gap-6 p-8">
             <div>
               <Link
