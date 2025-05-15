@@ -5,7 +5,6 @@ import {
   NavbarContent,
   NavbarBrand,
 } from "@heroui/navbar";
-import NextLink from "next/link";
 import clsx from "clsx";
 import { Button } from "@heroui/button";
 import { useEffect, useState } from "react";
@@ -45,12 +44,9 @@ export const Header = () => {
       >
         <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
           <NavbarBrand as="li" className="gap-3 max-w-fit">
-            <NextLink
-              className="flex justify-start items-center gap-1"
-              href="/"
-            >
+            <Link className="flex justify-start items-center gap-1" href="/">
               <Logo />
-            </NextLink>
+            </Link>
           </NavbarBrand>
         </NavbarContent>
         <NavbarContent justify="end">
