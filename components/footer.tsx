@@ -1,8 +1,19 @@
+"use client";
+
 import { Link } from "@heroui/link";
+import { useEffect, useState } from "react";
 
 import { Logo } from "./icons";
 
 export const Footer = () => {
+  const [year, setYear] = useState<string>("");
+
+  useEffect(() => {
+    const yearCalc = new Date().getFullYear();
+
+    setYear(yearCalc.toString());
+  }, []);
+
   return (
     <footer className="container mx-auto max-w-7xl relative w-full bg-gradient-to-b from-primary via-primary to-primary py-14 px-8 mt-12 rounded-xl shadow-lg overflow-hidden">
       <div className="absolute left-0 top-0 h-full w-full bg-[url('/assets/svg/bg-flowers-light.svg')] opacity-10 bg-cover bg-center z-0 pointer-events-none" />
@@ -130,7 +141,7 @@ export const Footer = () => {
         </div>
       </div>
       <div className="relative z-10 mt-10 border-t border-secondary/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-2 text-xs text-secondary/80 max-w-7xl mx-auto">
-        <span>© {new Date().getFullYear()} Mihrab. Tous droits réservés.</span>
+        <span>{`© ${year} Mihrab. Tous droits réservés.`}</span>
         <span>Design & développement : Mihrab</span>
       </div>
     </footer>
