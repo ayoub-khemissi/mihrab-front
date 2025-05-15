@@ -52,7 +52,7 @@ export default function Login() {
                   className="relative bg-transparent border-b border-gray-200 rounded-none px-0 py-2 placeholder:text-gray-400 focus:ring-0 focus:border-primary"
                   id="password"
                   name="password"
-                  placeholder="Choisissez un mot de passe à 10 caractères"
+                  placeholder="••••••••••"
                   type={showPassword ? "text" : "password"}
                 />
                 <button
