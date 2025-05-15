@@ -137,7 +137,12 @@ export default function ClosestJobOffers() {
                 {remuneration > 0 && (
                   <div className="flex items-center text-sm text-primary gap-2">
                     <FaMoneyBill className="w-4 h-4" />
-                    <span>{remuneration} €</span>
+                    <span>
+                      {Intl.NumberFormat("fr-FR", {
+                        style: "currency",
+                        currency: "EUR",
+                      }).format(remuneration)}
+                    </span>
                   </div>
                 )}
               </div>
