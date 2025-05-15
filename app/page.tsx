@@ -54,7 +54,7 @@ const howItWorksTexts = {
       ),
       title: "Je créé mon compte",
       description:
-        "Je renseigne mes informations d’identité générales ainsi que celle de ma mosquée",
+        "Je renseigne mes informations d'identité générales ainsi que celle de ma mosquée",
     },
     {
       step: (
@@ -109,7 +109,7 @@ export default function Home() {
         <div className="relative z-10 space-y-4">
           <h1 className={clsx("text-4xl text-secondary font-dmSerifText")}>
             La Plateforme de recherche <br />
-            d’Emploi pour Imams et Mosquées.
+            d&apos;Emploi pour Imams et Mosquées.
           </h1>
           <div className="bg-secondary gap-2 flex justify-center items-center flex-wrap w-fit p-2 rounded-md">
             <Button

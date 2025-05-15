@@ -84,7 +84,7 @@ export const Footer = () => {
                 className="text-secondary/80 hover:text-secondary"
                 href="/cgu"
               >
-                Conditions d’utilisation
+                Conditions d&apos;utilisation
               </Link>
             </li>
           </ul>
