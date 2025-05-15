@@ -7,7 +7,7 @@ import Section from "@/components/section";
 
 export default function Faq() {
   return (
-    <Section className="px-8">
+    <Section>
       <h1 className="text-3xl text-primary font-dmSerifText text-center pb-6 pt-10">
         Questions les plus fréquentes
       </h1>
