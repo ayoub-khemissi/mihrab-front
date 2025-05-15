@@ -2,15 +2,18 @@
 
 import Loading from "@/components/loading";
 import HalfPageBg from "@/components/half-page-bg";
+import Section from "@/components/section";
 
 export default function Showcase() {
   return (
     <>
       <title>Showcase | Mihrab</title>
-      <div className="min-h-screen flex pt-32 pb-20 w-full gap-12">
-        <HalfPageBg />
+      <Section>
+        <div className="h-[700px]">
+          <HalfPageBg />
+        </div>
         <Loading />
-      </div>
+      </Section>
     </>
   );
 }
