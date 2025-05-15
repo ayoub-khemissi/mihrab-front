@@ -11,7 +11,7 @@ export default function Contact() {
       <title>Contact | Mihrab</title>
       <meta content="Écrivez-nous sur Mihrab" name="description" />
       <Section className="min-h-screen flex flex-col items-center pt-32 pb-20 w-full">
-        <h1 className="text-4xl md:text-4xl text-center xl:text-left text-primary font-dmSerifText mb-8 w-full max-w-md">
+        <h1 className="text-4xl md:text-4xl text-center xl:text-left text-primary font-dmSerifText mb-8 w-full max-w-md pt-10">
           Écrivez-nous
         </h1>
         <form
