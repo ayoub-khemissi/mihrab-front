@@ -22,7 +22,7 @@ export const mockJobOffers: JobOffer[] = [
     quran_readings: [
       {
         riwaya: "hafs",
-        hizb_hifz: "21-30",
+        hizb_hifz: "twenty_thirty",
         tajweed_mastery: true,
         ijazah: false,
         created_at: 0,
@@ -88,7 +88,7 @@ export const mockJobOffers: JobOffer[] = [
     quran_readings: [
       {
         riwaya: "al_duri",
-        hizb_hifz: "0-10",
+        hizb_hifz: "zero_ten",
         tajweed_mastery: false,
         ijazah: false,
         created_at: 0,

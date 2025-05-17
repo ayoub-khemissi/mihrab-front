@@ -201,7 +201,7 @@ export const mockImams: ImamProfile[] = [
     quran_readings: [
       {
         riwaya: "warsh",
-        hizb_hifz: "21-30",
+        hizb_hifz: "twenty_thirty",
         tajweed_mastery: true,
         ijazah: false,
         created_at: 0,
@@ -305,7 +305,7 @@ export const mockImams: ImamProfile[] = [
     quran_readings: [
       {
         riwaya: "qalun",
-        hizb_hifz: "11-20",
+        hizb_hifz: "ten_twenty",
         tajweed_mastery: false,
         ijazah: false,
         created_at: 0,

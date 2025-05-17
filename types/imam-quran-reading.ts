@@ -7,7 +7,14 @@ export type ImamQuranReading = {
     | "al_susi"
     | "shubah"
     | "khalaf";
-  hizb_hifz: "0-10" | "11-20" | "21-30" | "31-40" | "41-50" | "51-60" | "hafiz";
+  hizb_hifz:
+    | "zero_ten"
+    | "ten_twenty"
+    | "twenty_thirty"
+    | "thirty_forty"
+    | "forty_fifty"
+    | "fifty_sixty"
+    | "hafiz";
   tajweed_mastery: boolean;
   ijazah: boolean;
   created_at: number;
