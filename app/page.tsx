@@ -156,7 +156,7 @@ export default function Home() {
       >
         <div className="absolute left-0 top-0 h-full w-full rounded-xl bg-[url('/assets/svg/bg-flowers-light.svg')] opacity-10 bg-cover bg-center z-0 pointer-events-none" />
         <h2 className="text-center relative z-10 text-3xl text-secondary font-dmSerifText">
-          Comment ça marche
+          Comment ça marche ?
         </h2>
         <div className="bg-secondary gap-2 flex justify-center items-center flex-wrap w-fit p-2 rounded-md">
           <Button
