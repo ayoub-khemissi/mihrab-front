@@ -89,7 +89,7 @@ export default function ClosestImams() {
     return (
       <button
         key={imam.user.id + "-" + idx}
-        className="bg-secondary rounded-xl shadow-md w-full max-w-[420px] flex flex-col p-6 items-start border border-gray-200 hover:shadow-lg transition-shadow relative"
+        className="bg-secondary rounded-xl shadow-md w-full max-w-[420px] flex flex-col p-6 items-start border border-gray-200 hover:shadow-lg transition-shadow relative text-sm"
       >
         <div className="flex items-center justify-between w-full mb-4">
           <div className="flex items-center gap-3">
@@ -112,19 +112,21 @@ export default function ClosestImams() {
                 />
               )}
             </div>
-            <span className="font-bold text-lg text-primary">{fullName}</span>
+            <span className="font-dmSerifText text-xl text-primary text-left">
+              {fullName}
+            </span>
           </div>
           <div className="rounded-full bg-secondary p-2 hover:bg-tertiary transition-colors">
             <FaRegHeart className="w-5 h-5 text-primary" />
           </div>
         </div>
         <div className="h-px bg-black/5 w-full mb-3" />
-        <div className="flex flex-col gap-2 mb-3">
-          <div className="flex items-center gap-2 text-primary text-base">
+        <div className="flex flex-col gap-1 mb-3">
+          <div className="flex items-center gap-2 text-primary">
             <FaLocationDot className="w-4 h-4 text-primary" />
             <span>{location}</span>
           </div>
-          <div className="flex items-center gap-2 text-primary text-base">
+          <div className="flex items-center gap-2 text-primary">
             <FaLanguage className="w-4 h-4 text-primary" />
             <span>{languages}</span>
           </div>
@@ -135,12 +137,12 @@ export default function ClosestImams() {
           </div>
           <div className="h-px bg-black/5 w-full" />
         </div>
-        <div className="flex flex-col gap-2">
-          <div className="flex items-center gap-2 text-primary text-base">
+        <div className="flex flex-col gap-1">
+          <div className="flex items-center gap-2 text-primary">
             <FaRegFileLines className="w-4 h-4 text-primary" />
             <span>{contractType}</span>
           </div>
-          <div className="flex items-center gap-2 text-primary text-base">
+          <div className="flex items-center gap-2 text-primary">
             <FaRegClock className="w-4 h-4 text-primary" />
             <span>{workingHour}</span>
           </div>
