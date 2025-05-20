@@ -144,7 +144,7 @@ export default function Home() {
                 });
               }}
             >
-              Je suis une Mosquée
+              Je représente une Mosquée
             </Button>
           </div>
         </div>

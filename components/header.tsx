@@ -75,7 +75,7 @@ export const Header = () => {
                 handleProfileChange("mosque");
               }}
             >
-              Je suis une Mosquée
+              Je représente une Mosquée
             </Button>
             <div className="w-0.5 h-auto bg-black/5" />
             <Link className="text-primary text-sm font-medium" href="/login">
