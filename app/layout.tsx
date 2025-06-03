@@ -3,6 +3,7 @@
 import "@/styles/globals.css";
 import clsx from "clsx";
 import { Suspense } from "react";
+import { ReCaptchaProvider } from "next-recaptcha-v3";
 
 import { Providers } from "./providers";
 
@@ -12,6 +13,7 @@ import Container from "@/components/container";
 import { Footer } from "@/components/footer";
 import Loading from "@/components/loading";
 import ScrollToTop from "@/components/scroll-to-top";
+import { NEXT_PUBLIC_RECAPTCHA_SITE_KEY } from "@/config/config";
 
 export default function RootLayout({
   children,
@@ -48,12 +50,14 @@ export default function RootLayout({
         )}
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "light" }}>
-          <Suspense fallback={<Loading />}>
-            <Header />
-            <Container>{children}</Container>
-            <Footer />
-            <ScrollToTop />
-          </Suspense>
+          <ReCaptchaProvider reCaptchaKey={NEXT_PUBLIC_RECAPTCHA_SITE_KEY}>
+            <Suspense fallback={<Loading />}>
+              <Header />
+              <Container>{children}</Container>
+              <Footer />
+              <ScrollToTop />
+            </Suspense>
+          </ReCaptchaProvider>
         </Providers>
       </body>
     </html>
