@@ -16,7 +16,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { FaUser } from "react-icons/fa6";
 
 import { Logo } from "@/components/icons";
-import { User } from "@/types/EntityTypes/User";
+import { User } from "@/types/DatabaseTypes/User";
 
 export const Header = () => {
   const searchParams = useSearchParams();
