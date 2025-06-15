@@ -65,7 +65,7 @@ export default function RegisterPage() {
     <>
       <title>S&apos;inscrire | Mihrab</title>
       <Section className="min-h-screen flex w-full gap-12">
-        <div className="flex flex-col items-center h-full xl:w-1/2 w-full pt-10">
+        <div className="flex flex-col items-center h-full xl:w-1/2 w-full">
           <h1 className="text-4xl md:text-4xl text-center xl:text-left text-primary font-dmSerifText mb-8 w-full max-w-md">
             S&apos;inscrire sur Mihrab
           </h1>
