@@ -106,8 +106,8 @@ export default function Home() {
         id="top"
       >
         <div className="absolute left-0 top-0 h-full w-full bg-gradient-to-r from-primary to-transparent z-0 pointer-events-none" />
-        <div className="relative z-10 space-y-4">
-          <h1 className={clsx("text-4xl text-secondary font-dmSerifText")}>
+        <div className="relative z-10 space-y-4 px-0 xl:px-12">
+          <h1 className="text-4xl text-secondary font-dmSerifText">
             La Plateforme de recherche <br />
             d&apos;Emploi pour Imams et Mosquées.
           </h1>
