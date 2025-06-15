@@ -5,12 +5,61 @@ import { Input } from "@heroui/input";
 import { Link } from "@heroui/link";
 import { FaGoogle, FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
 import { useState } from "react";
+import { useReCaptcha } from "next-recaptcha-v3";
+import { useRouter } from "next/navigation";
+import { addToast } from "@heroui/toast";
 
 import Section from "@/components/section";
 import HalfPageBg from "@/components/half-page-bg";
+import { fetchWrapper } from "@/lib/Fetcher";
+import getResponseCodeMessage from "@/utils/ResponseCodesMessages";
 
-export default function Register() {
+export default function RegisterPage() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const { executeRecaptcha } = useReCaptcha();
+  const router = useRouter();
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const token = await executeRecaptcha("register");
+
+    const response = await fetchWrapper(`/register/classical`, "POST", {
+      email,
+      password,
+      recaptchaToken: token,
+    });
+
+    if (response?.ok) {
+      const responseData = await response?.json();
+      const code = responseData?.code;
+      const data = responseData?.data;
+
+      localStorage.setItem("user", JSON.stringify(data));
+
+      addToast({
+        title: "Inscription réussie",
+        description: getResponseCodeMessage(code),
+        color: "success",
+        timeout: 3000,
+        shouldShowTimeoutProgress: true,
+      });
+
+      router.push("/role-selection");
+    } else {
+      const data = await response?.json();
+      const code = data?.code;
+
+      addToast({
+        title: "Erreur lors de l'inscription",
+        description: getResponseCodeMessage(code),
+        color: "danger",
+        timeout: 3000,
+        shouldShowTimeoutProgress: true,
+      });
+    }
+  };
 
   return (
     <>
@@ -22,7 +71,7 @@ export default function Register() {
           </h1>
           <form
             className="w-full max-w-md bg-secondary p-0 flex flex-col gap-6"
-            onSubmit={(e) => e.preventDefault()}
+            onSubmit={handleSubmit}
           >
             <div className="flex flex-col gap-2">
               <label
@@ -37,6 +86,8 @@ export default function Register() {
                 name="email"
                 placeholder="exemple@mosquee.fr"
                 type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             <div className="flex flex-col gap-2 relative">
@@ -53,6 +104,8 @@ export default function Register() {
                   name="password"
                   placeholder="••••••••••"
                   type={showPassword ? "text" : "password"}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
                 <button
                   aria-label={
@@ -100,6 +153,27 @@ export default function Register() {
                 Me connecter à mon compte
               </Link>
             </div>
+            <p className="w-full text-center text-sm text-gray-500">
+              Ce site est protégé par reCAPTCHA et les{" "}
+              <a
+                className="text-primary underline underline-offset-2"
+                href="https://policies.google.com/privacy"
+                rel="noreferrer"
+                target="_blank"
+              >
+                Politique de confidentialité
+              </a>{" "}
+              et{" "}
+              <a
+                className="text-primary underline underline-offset-2"
+                href="https://policies.google.com/terms"
+                rel="noreferrer"
+                target="_blank"
+              >
+                Conditions d&apos;utilisation
+              </a>{" "}
+              s&apos;appliquent.
+            </p>
           </form>
         </div>
         <div className="xl:w-1/2 hidden xl:block">
