@@ -17,6 +17,7 @@ import { FaUser } from "react-icons/fa6";
 
 import { Logo } from "@/components/icons";
 import { User } from "@/types/DatabaseTypes/User";
+import { UserRole } from "@/types/DatabaseTypes/UserRole";
 
 export const Header = () => {
   const searchParams = useSearchParams();
@@ -48,9 +49,9 @@ export const Header = () => {
     }
   }, [searchParams]);
 
-  const isImam = user?.role === "imam";
-  const isMosqueManager = user?.role === "mosque_manager";
-  const isAdmin = user?.role === "admin";
+  const isImam = user?.role === UserRole.IMAM;
+  const isMosqueManager = user?.role === UserRole.MOSQUE_MANAGER;
+  const isAdmin = user?.role === UserRole.ADMIN;
 
   return (
     <div className="container mx-auto max-w-7xl">
@@ -68,75 +69,59 @@ export const Header = () => {
         <NavbarContent justify="end">
           {user ? (
             <>
-              {!isImam && (
+              {isImam && (
                 <>
                   <Link
                     className="text-primary text-sm font-medium gap-2"
                     href="/job-offers"
                   >
-                    <FaUser className="text-primary text-sm font-medium" />
                     <span className="text-primary text-sm font-medium">
-                      Mosquées
+                      Offres d&apos;emploi
                     </span>
                   </Link>
                   <Link
                     className="text-primary text-sm font-medium gap-2"
-                    href="/apply"
+                    href="/applications"
                   >
-                    <FaUser className="text-primary text-sm font-medium" />
                     <span className="text-primary text-sm font-medium">
-                      Postuler
+                      Mes candidatures
                     </span>
                   </Link>
-                  <div className="w-0.5 h-auto bg-black/5" />
+                  <div className="w-0.5 h-8 bg-black/5" />
                 </>
               )}
               {isMosqueManager && (
                 <>
                   <Link
                     className="text-primary text-sm font-medium gap-2"
-                    href="/home"
+                    href="/imams"
                   >
-                    <FaUser className="text-primary text-sm font-medium" />
                     <span className="text-primary text-sm font-medium">
-                      Accueil
+                      Trouver un Imam
                     </span>
                   </Link>
-                  <div className="w-0.5 h-auto bg-black/5" />
-                  <Link
-                    className="text-primary text-sm font-medium gap-2"
-                    href="/imam"
-                  >
-                    <FaUser className="text-primary text-sm font-medium" />
-                    <span className="text-primary text-sm font-medium">
-                      Imams
-                    </span>
-                  </Link>
-                  <div className="w-0.5 h-auto bg-black/5" />
                   <Link
                     className="text-primary text-sm font-medium gap-2"
                     href="/publish"
                   >
-                    <FaUser className="text-primary text-sm font-medium" />
                     <span className="text-primary text-sm font-medium">
-                      Publier
+                      Publier une offre
                     </span>
                   </Link>
-                  <div className="w-0.5 h-auto bg-black/5" />
+                  <div className="w-0.5 h-8 bg-black/5" />
                 </>
               )}
               {isAdmin && (
                 <>
                   <Link
                     className="text-primary text-sm font-medium gap-2"
-                    href="/home"
+                    href="/users"
                   >
-                    <FaUser className="text-primary text-sm font-medium" />
                     <span className="text-primary text-sm font-medium">
-                      Accueil
+                      Gestion des utilisateurs
                     </span>
                   </Link>
-                  <div className="w-0.5 h-auto bg-black/5" />
+                  <div className="w-0.5 h-8 bg-black/5" />
                 </>
               )}
               <Link
@@ -179,7 +164,7 @@ export const Header = () => {
               >
                 Je représente une Mosquée
               </Button>
-              <div className="w-0.5 h-auto bg-black/5" />
+              <div className="w-0.5 h-8 bg-black/5" />
               <Link
                 className="text-primary text-sm font-medium gap-2"
                 href="/login"
@@ -192,7 +177,7 @@ export const Header = () => {
         </NavbarContent>
 
         <NavbarMenu className="bg-primary/70 text-secondary gap-y-4 py-8">
-          <NavbarMenuItem>
+          <NavbarMenuItem className="flex flex-col gap-4">
             {user ? (
               <>
                 {isImam && (
@@ -206,17 +191,17 @@ export const Header = () => {
                     </Link>
                     <Link
                       className="text-secondary text-xl font-medium w-full"
-                      href="/mosque"
+                      href="/job-offers"
                       onClick={() => setIsMenuOpen(false)}
                     >
-                      Mosquées
+                      Offres d&apos;emploi
                     </Link>
                     <Link
                       className="text-secondary text-xl font-medium w-full"
-                      href="/apply"
+                      href="/applications"
                       onClick={() => setIsMenuOpen(false)}
                     >
-                      Postuler
+                      Mes candidatures
                     </Link>
                   </>
                 )}
@@ -231,28 +216,37 @@ export const Header = () => {
                     </Link>
                     <Link
                       className="text-secondary text-xl font-medium w-full"
-                      href="/imam"
+                      href="/imams"
                       onClick={() => setIsMenuOpen(false)}
                     >
-                      Imams
+                      Trouver un Imam
                     </Link>
                     <Link
                       className="text-secondary text-xl font-medium w-full"
                       href="/publish"
                       onClick={() => setIsMenuOpen(false)}
                     >
-                      Publier
+                      Publier une offre
                     </Link>
                   </>
                 )}
                 {isAdmin && (
-                  <Link
-                    className="text-secondary text-xl font-medium w-full"
-                    href="/home"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Accueil
-                  </Link>
+                  <>
+                    <Link
+                      className="text-secondary text-xl font-medium w-full"
+                      href="/home"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      Accueil
+                    </Link>
+                    <Link
+                      className="text-secondary text-xl font-medium w-full"
+                      href="/users"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      Gestion des utilisateurs
+                    </Link>
+                  </>
                 )}
                 <Link
                   className="text-secondary text-xl font-medium w-full"
@@ -263,16 +257,48 @@ export const Header = () => {
                 </Link>
               </>
             ) : (
-              <Link
-                className="text-secondary text-xl font-medium w-full"
-                href="/login"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Se connecter
-              </Link>
+              <>
+                <Link
+                  className="text-secondary text-xl font-medium w-full"
+                  href="/login"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Se connecter
+                </Link>
+                <div className="flex flex-col gap-4 mt-4">
+                  <Button
+                    className={clsx(
+                      "border-secondary border-2 rounded-sm font-normal w-full",
+                      profileSelected === "imam"
+                        ? "bg-secondary text-primary font-medium"
+                        : "bg-transparent text-secondary",
+                    )}
+                    onPress={() => {
+                      handleProfileChange("imam");
+                      setIsMenuOpen(false);
+                    }}
+                  >
+                    Je suis Imam
+                  </Button>
+                  <Button
+                    className={clsx(
+                      "border-secondary border-2 rounded-sm font-normal w-full",
+                      profileSelected === "mosque"
+                        ? "bg-secondary text-primary font-medium"
+                        : "bg-transparent text-secondary",
+                    )}
+                    onPress={() => {
+                      handleProfileChange("mosque");
+                      setIsMenuOpen(false);
+                    }}
+                  >
+                    Je représente une Mosquée
+                  </Button>
+                </div>
+              </>
             )}
           </NavbarMenuItem>
-          <NavbarMenuItem>
+          <NavbarMenuItem className="flex flex-col gap-4">
             <Link
               className="text-secondary text-xl font-medium w-full"
               href="/contact"
@@ -280,14 +306,26 @@ export const Header = () => {
             >
               Contact
             </Link>
-          </NavbarMenuItem>
-          <NavbarMenuItem>
             <Link
               className="text-secondary text-xl font-medium w-full"
               href="/faq"
               onClick={() => setIsMenuOpen(false)}
             >
               FAQ
+            </Link>
+            <Link
+              className="text-secondary text-xl font-medium w-full"
+              href="/terms-of-service"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Conditions d&apos;utilisation
+            </Link>
+            <Link
+              className="text-secondary text-xl font-medium w-full"
+              href="/privacy-policy"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Politique de confidentialité
             </Link>
           </NavbarMenuItem>
         </NavbarMenu>
