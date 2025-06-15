@@ -16,7 +16,7 @@ const Section = ({
   return (
     <section
       className={clsx(
-        "px-6 lg:px-10 py-12 lg:py-32",
+        "px-8 xl:px-0 py-20 lg:py-32",
         className,
         fullWidth ? "w-full" : "container mx-auto max-w-7xl",
       )}
