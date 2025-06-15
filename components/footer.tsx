@@ -16,7 +16,7 @@ export const Footer = () => {
 
   return (
     <footer className="container mx-auto max-w-7xl">
-      <div className="relative w-full bg-primary xl:rounded-xl p-6 md:p-10 lg:p-16 shadow-lg overflow-hidden">
+      <div className="relative w-full bg-primary xl:rounded-xl p-8 xl:p-12 shadow-lg overflow-hidden">
         <div className="absolute left-0 top-0 h-full w-full bg-[url('/assets/svg/bg-flowers-light.svg')] opacity-10 bg-cover bg-center z-0 pointer-events-none" />
         <div className="relative z-10 flex flex-col md:flex-row md:items-start gap-10 justify-between">
           <div className="flex flex-col items-center md:items-start gap-3 min-w-[180px]">
