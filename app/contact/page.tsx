@@ -5,7 +5,7 @@ import { Input, Textarea } from "@heroui/input";
 
 import Section from "@/components/section";
 
-export default function Contact() {
+export default function ContactPage() {
   return (
     <>
       <title>Contact | Mihrab</title>

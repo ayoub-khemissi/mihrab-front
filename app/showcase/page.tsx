@@ -4,7 +4,7 @@ import Loading from "@/components/loading";
 import HalfPageBg from "@/components/half-page-bg";
 import Section from "@/components/section";
 
-export default function Showcase() {
+export default function ShowcasePage() {
   return (
     <>
       <title>Showcase | Mihrab</title>

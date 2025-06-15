@@ -10,7 +10,7 @@ import { useState } from "react";
 import Section from "@/components/section";
 import HalfPageBg from "@/components/half-page-bg";
 
-export default function Login() {
+export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
 
   return (

@@ -1,10 +1,8 @@
-"use client";
-
 import { Link } from "@heroui/link";
 
 import Section from "@/components/section";
 
-export default function NotFound() {
+export default function NotFoundPage() {
   return (
     <div className="flex flex-col w-full min-h-screen">
       <Section className="flex h-full min-h-0 flex-col items-center justify-center w-full">
