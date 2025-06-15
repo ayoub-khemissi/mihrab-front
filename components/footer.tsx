@@ -41,7 +41,7 @@ export const Footer = () => {
               <li>
                 <Link
                   className="text-secondary/80 hover:text-secondary"
-                  href="/a-propos"
+                  href="/about"
                 >
                   À propos
                 </Link>
@@ -72,25 +72,17 @@ export const Footer = () => {
               <li>
                 <Link
                   className="text-secondary/80 hover:text-secondary"
-                  href="/mentions-legales"
-                >
-                  Mentions légales
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className="text-secondary/80 hover:text-secondary"
-                  href="/confidentialite"
-                >
-                  Politique de confidentialité
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className="text-secondary/80 hover:text-secondary"
-                  href="/cgu"
+                  href="/terms-of-service"
                 >
                   Conditions d&apos;utilisation
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="text-secondary/80 hover:text-secondary"
+                  href="/privacy-policy"
+                >
+                  Politique de confidentialité
                 </Link>
               </li>
             </ul>
