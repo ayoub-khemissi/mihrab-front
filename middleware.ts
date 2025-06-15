@@ -79,12 +79,13 @@ export default function middleware(req: NextRequest) {
     "/privacy-policy",
   ];
 
-  const unAuthorizedLoggedInRoutes: string[] = ["/login", "/register"];
+  const unauthorizedLoggedInRoutes: string[] = ["/login", "/register"];
 
   // Authorized routes for non logged in users
   const nonLoggedInRoutes: string[] = [
+    "/",
     ...sharedRoutes,
-    ...unAuthorizedLoggedInRoutes,
+    ...unauthorizedLoggedInRoutes,
   ];
 
   // Authorized routes for logged in users without a role
@@ -129,7 +130,7 @@ export default function middleware(req: NextRequest) {
   }
 
   // Redirect logged in users away from login/register pages
-  if (isLoggedIn && unAuthorizedLoggedInRoutes.includes(pathname)) {
+  if (isLoggedIn && unauthorizedLoggedInRoutes.includes(pathname)) {
     if (hasNoRole) {
       return NextResponse.redirect(new URL("/role-selection", req.url));
     }
