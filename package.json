@@ -3,10 +3,13 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev -H mihrabdev.io -p 3000 --turbopack",
+    "devs": "next dev -H mihrabdev.io -p 3000 --experimental-https --turbopack",
+    "local": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint --fix"
+    "lint": "next lint --fix",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@heroui/accordion": "^2.2.16",
