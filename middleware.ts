@@ -64,13 +64,13 @@ export default function middleware(req: NextRequest) {
 
   const isLoggedIn = email && id;
   const isSuspended = status === UserStatus.SUSPENDED;
+  const hasNoRole = role === UserRole.NONE;
   const isImam = role === UserRole.IMAM;
   const isMosqueManager = role === UserRole.MOSQUE_MANAGER;
   const isAdmin = role === UserRole.ADMIN;
 
   // Shared routes
-  const transverseRoutes: string[] = [
-    "/",
+  const sharedRoutes: string[] = [
     "/contact",
     "/showcase",
     "/faq",
@@ -83,20 +83,20 @@ export default function middleware(req: NextRequest) {
 
   // Authorized routes for non logged in users
   const nonLoggedInRoutes: string[] = [
-    ...transverseRoutes,
+    ...sharedRoutes,
     ...unAuthorizedLoggedInRoutes,
   ];
 
   // Authorized routes for logged in users without a role
   const noRoleRoutes: string[] = [
-    ...transverseRoutes,
+    ...sharedRoutes,
     "/role-selection",
     "/register-profile",
   ];
 
   // Authorized routes for imams
   const imamRoutes: string[] = [
-    ...transverseRoutes,
+    ...sharedRoutes,
     "/home",
     "/mosque",
     "/profile",
@@ -105,7 +105,7 @@ export default function middleware(req: NextRequest) {
 
   // Authorized routes for mosque managers
   const mosqueManagerRoutes: string[] = [
-    ...transverseRoutes,
+    ...sharedRoutes,
     "/home",
     "/imam",
     "/profile",
@@ -116,10 +116,10 @@ export default function middleware(req: NextRequest) {
   const adminRoutes: string[] = [...noRoleRoutes, "/home", "/profile"];
 
   // Authorized routes for suspended users
-  const suspendedRoutes: string[] = [...transverseRoutes, "/user-suspended"];
+  const suspendedRoutes: string[] = [...sharedRoutes, "/user-suspended"];
 
   // Always allow access to transverse routes
-  if (transverseRoutes.includes(pathname)) {
+  if (sharedRoutes.includes(pathname)) {
     return NextResponse.next();
   }
 
@@ -130,7 +130,7 @@ export default function middleware(req: NextRequest) {
 
   // Redirect logged in users away from login/register pages
   if (isLoggedIn && unAuthorizedLoggedInRoutes.includes(pathname)) {
-    if (!role) {
+    if (hasNoRole) {
       return NextResponse.redirect(new URL("/role-selection", req.url));
     }
 
@@ -143,7 +143,7 @@ export default function middleware(req: NextRequest) {
   }
 
   // Redirect to home page if user is logged in but has no role and trying to access an authorized route
-  if (isLoggedIn && !role && !noRoleRoutes.includes(pathname)) {
+  if (isLoggedIn && hasNoRole && !noRoleRoutes.includes(pathname)) {
     return NextResponse.redirect(new URL("/role-selection", req.url));
   }
 
