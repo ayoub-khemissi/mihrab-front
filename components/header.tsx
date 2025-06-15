@@ -137,7 +137,7 @@ export const Header = () => {
               </Link>
             </>
           ) : (
-            <div className="hidden md:flex gap-6 justify-start text-nowrap">
+            <div className="hidden md:flex gap-6 justify-start items-center text-nowrap">
               <Button
                 className={clsx(
                   "border-primary border-2 rounded-sm font-normal",
@@ -265,36 +265,6 @@ export const Header = () => {
                 >
                   Se connecter
                 </Link>
-                <div className="flex flex-col gap-4 mt-4">
-                  <Button
-                    className={clsx(
-                      "border-secondary border-2 rounded-sm font-normal w-full",
-                      profileSelected === "imam"
-                        ? "bg-secondary text-primary font-medium"
-                        : "bg-transparent text-secondary",
-                    )}
-                    onPress={() => {
-                      handleProfileChange("imam");
-                      setIsMenuOpen(false);
-                    }}
-                  >
-                    Je suis Imam
-                  </Button>
-                  <Button
-                    className={clsx(
-                      "border-secondary border-2 rounded-sm font-normal w-full",
-                      profileSelected === "mosque"
-                        ? "bg-secondary text-primary font-medium"
-                        : "bg-transparent text-secondary",
-                    )}
-                    onPress={() => {
-                      handleProfileChange("mosque");
-                      setIsMenuOpen(false);
-                    }}
-                  >
-                    Je représente une Mosquée
-                  </Button>
-                </div>
               </>
             )}
           </NavbarMenuItem>
