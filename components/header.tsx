@@ -14,10 +14,19 @@ import { useEffect, useState } from "react";
 import { Link } from "@heroui/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { FaUser } from "react-icons/fa6";
+import {
+  Dropdown,
+  DropdownTrigger,
+  DropdownMenu,
+  DropdownItem,
+} from "@heroui/dropdown";
+import { addToast } from "@heroui/toast";
 
 import { Logo } from "@/components/icons";
 import { User } from "@/types/DatabaseTypes/User";
 import { UserRole } from "@/types/DatabaseTypes/UserRole";
+import { fetchWrapper } from "@/lib/Fetcher";
+import getResponseCodeMessage from "@/utils/ResponseCodesMessages";
 
 export const Header = () => {
   const searchParams = useSearchParams();
@@ -52,6 +61,37 @@ export const Header = () => {
   const isImam = user?.role === UserRole.IMAM;
   const isMosqueManager = user?.role === UserRole.MOSQUE_MANAGER;
   const isAdmin = user?.role === UserRole.ADMIN;
+
+  const disconnect = async () => {
+    setIsMenuOpen(false);
+
+    const response = await fetchWrapper("/logout", "POST");
+
+    if (response?.ok) {
+      localStorage.removeItem("user");
+      router.push("/");
+      setUser(null);
+
+      addToast({
+        title: "Déconnexion réussie",
+        description: "Vous avez été déconnecté.",
+        color: "primary",
+        timeout: 3000,
+        shouldShowTimeoutProgress: true,
+      });
+    } else {
+      const responseData = await response?.json();
+      const code = responseData?.code;
+
+      addToast({
+        title: "Erreur lors de la déconnexion",
+        description: getResponseCodeMessage(code),
+        color: "danger",
+        timeout: 3000,
+        shouldShowTimeoutProgress: true,
+      });
+    }
+  };
 
   return (
     <div className="container mx-auto max-w-7xl">
@@ -124,17 +164,39 @@ export const Header = () => {
                   <div className="w-0.5 h-8 bg-black/5" />
                 </>
               )}
-              <Link
-                className="text-primary text-sm font-medium gap-2"
-                href="/profile"
-              >
-                <FaUser className="text-primary text-sm font-medium" />
-                <span className="text-primary text-sm font-medium">
-                  {user.first_name && user.last_name
-                    ? `${user.first_name} ${user.last_name}`
-                    : "Mon profil"}
-                </span>
-              </Link>
+              {user && (
+                <Dropdown>
+                  <DropdownTrigger>
+                    <Button
+                      disableRipple
+                      className="text-primary text-sm font-medium gap-2 bg-transparent border-none shadow-none"
+                      startContent={
+                        <FaUser className="text-primary text-sm font-medium" />
+                      }
+                      variant="light"
+                    >
+                      {user.first_name && user.last_name
+                        ? `${user.first_name} ${user.last_name}`
+                        : "Mon profil"}
+                    </Button>
+                  </DropdownTrigger>
+                  <DropdownMenu aria-label="Profil">
+                    <DropdownItem
+                      key="profile"
+                      onClick={() => router.push("/profile")}
+                    >
+                      Mon profil
+                    </DropdownItem>
+                    <DropdownItem
+                      key="logout"
+                      color="danger"
+                      onClick={disconnect}
+                    >
+                      Déconnexion
+                    </DropdownItem>
+                  </DropdownMenu>
+                </Dropdown>
+              )}
             </>
           ) : (
             <div className="hidden md:flex gap-6 justify-start items-center text-nowrap">
@@ -255,6 +317,13 @@ export const Header = () => {
                 >
                   Mon profil
                 </Link>
+                <button
+                  className="text-secondary text-xl font-medium w-full text-left"
+                  type="button"
+                  onClick={disconnect}
+                >
+                  Déconnexion
+                </button>
               </>
             ) : (
               <>
