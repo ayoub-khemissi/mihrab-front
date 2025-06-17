@@ -2,6 +2,7 @@
 
 import { Link } from "@heroui/link";
 import { useEffect, useState } from "react";
+import { FaFacebook, FaInstagram, FaXTwitter } from "react-icons/fa6";
 
 import { Logo } from "./icons";
 
@@ -90,51 +91,33 @@ export const Footer = () => {
           <div className="flex flex-col gap-3 min-w-[180px]">
             <h3 className="text-secondary font-semibold mb-1">Suivez-nous</h3>
             <div className="flex gap-3 mt-1">
-              <a
-                aria-label="Twitter"
-                className="hover:scale-110 transition-transform"
-                href="https://twitter.com/mihrabapp"
+              <Link
+                aria-label="X"
+                className="hover:scale-110 transition-transform text-white"
+                href="https://x.com/mihrabapp"
                 rel="noopener noreferrer"
                 target="_blank"
               >
-                <svg fill="none" height="24" viewBox="0 0 24 24" width="24">
-                  <path
-                    d="M22 5.924a8.2 8.2 0 0 1-2.357.646A4.117 4.117 0 0 0 21.448 4.1a8.224 8.224 0 0 1-2.606.996A4.107 4.107 0 0 0 11.034 9.03a11.654 11.654 0 0 1-8.457-4.287a4.106 4.106 0 0 0 1.27 5.482A4.073 4.073 0 0 1 2.8 9.07v.052a4.108 4.108 0 0 0 3.292 4.025a4.1 4.1 0 0 1-1.852.07a4.11 4.11 0 0 0 3.834 2.85A8.233 8.233 0 0 1 2 19.13a11.616 11.616 0 0 0 6.29 1.844c7.547 0 11.675-6.155 11.675-11.49c0-.175-.004-.35-.012-.523A8.18 8.18 0 0 0 22 5.924Z"
-                    fill="#fff"
-                    fillOpacity=".8"
-                  />
-                </svg>
-              </a>
-              <a
+                <FaInstagram size={24} />
+              </Link>
+              <Link
+                aria-label="X"
+                className="hover:scale-110 transition-transform text-white"
+                href="https://x.com/mihrabapp"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <FaXTwitter size={24} />
+              </Link>
+              <Link
                 aria-label="Facebook"
-                className="hover:scale-110 transition-transform"
+                className="hover:scale-110 transition-transform text-white"
                 href="https://facebook.com/mihrabapp"
                 rel="noopener noreferrer"
                 target="_blank"
               >
-                <svg fill="none" height="24" viewBox="0 0 24 24" width="24">
-                  <path
-                    d="M22.675 0H1.325C.593 0 0 .593 0 1.326v21.348C0 23.406.593 24 1.325 24h11.495v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788c1.325 0 2.463.099 2.797.143v3.24h-1.92c-1.504 0-1.797.715-1.797 1.763v2.312h3.587l-.467 3.622h-3.12V24h6.116C23.406 24 24 23.406 24 22.674V1.326C24 .593 23.406 0 22.675 0"
-                    fill="#fff"
-                    fillOpacity=".8"
-                  />
-                </svg>
-              </a>
-              <a
-                aria-label="LinkedIn"
-                className="hover:scale-110 transition-transform"
-                href="https://linkedin.com/mihrabapp"
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                <svg fill="none" height="24" viewBox="0 0 24 24" width="24">
-                  <path
-                    d="M20.447 20.452h-3.554v-5.569c0-1.327-.026-3.037-1.849-3.037c-1.851 0-2.132 1.445-2.132 2.939v5.667H9.358V9h3.414v1.561h.049c.476-.9 1.637-1.849 3.37-1.849c3.601 0 4.267 2.369 4.267 5.455v6.285ZM5.337 7.433a2.062 2.062 0 1 1 0-4.124a2.062 2.062 0 0 1 0 4.124ZM7.119 20.452H3.554V9h3.565v11.452ZM22.225 0H1.771C.792 0 0 .771 0 1.723v20.549C0 23.229.792 24 1.771 24h20.451C23.2 24 24 23.229 24 22.271V1.723C24 .771 23.2 0 22.225 0Z"
-                    fill="#fff"
-                    fillOpacity=".8"
-                  />
-                </svg>
-              </a>
+                <FaFacebook size={24} />
+              </Link>
             </div>
           </div>
         </div>
