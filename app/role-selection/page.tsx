@@ -29,6 +29,7 @@ export default function RoleSelectionPage() {
         <div className="w-full">
           <button
             className="group relative flex flex-col justify-center items-center w-full min-h-[300px] lg:min-h-[500px] rounded-xl bg-[url('/assets/bg/mosque-inside.jpg')] bg-cover bg-center shadow-lg overflow-hidden cursor-pointer hover:scale-105 transition-all duration-300"
+            type="button"
             onClick={() => handleRoleSelection(UserRole.IMAM)}
           >
             <div className="absolute left-0 top-0 h-full w-full bg-primary/60 group-hover:bg-primary/30 transition-all duration-300 z-0" />
@@ -42,6 +43,7 @@ export default function RoleSelectionPage() {
         <div className="w-full">
           <button
             className="group relative flex flex-col justify-center items-center w-full min-h-[300px] lg:min-h-[500px] rounded-xl bg-[url('/assets/bg/mosque-6.jpg')] bg-cover bg-center shadow-lg overflow-hidden cursor-pointer hover:scale-105 transition-all duration-300"
+            type="button"
             onClick={() => handleRoleSelection(UserRole.MOSQUE_MANAGER)}
           >
             <div className="absolute left-0 top-0 h-full w-full bg-primary/60 group-hover:bg-primary/30 transition-all duration-300 z-0" />
