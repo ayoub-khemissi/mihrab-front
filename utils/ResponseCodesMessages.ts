@@ -17,9 +17,9 @@ const getResponseCodeMessage = (code: keyof typeof ResponseCodes) => {
     case ResponseCodes.REGISTER_FAILED_USER_ALREADY_EXISTS.code:
       return "Cet email est déjà utilisé.";
     case ResponseCodes.LOGIN_SUCCESS.code:
-      return "Connexion réussie.";
+      return "Vous êtes maintenant connecté.";
     case ResponseCodes.LOGOUT_SUCCESS.code:
-      return "Déconnexion réussie.";
+      return "Vous avez été déconnecté.";
     case ResponseCodes.LOGOUT_FAILED_INVALID_TOKEN.code:
       return "Token invalide. Veuillez vous reconnecter.";
     default:
