@@ -155,23 +155,23 @@ export default function RegisterPage() {
             </div>
             <p className="w-full text-center text-sm text-gray-500">
               Ce site est protégé par reCAPTCHA et les{" "}
-              <a
-                className="text-primary underline underline-offset-2"
+              <Link
+                className="text-inherit text-sm underline underline-offset-2"
                 href="https://policies.google.com/privacy"
                 rel="noreferrer"
                 target="_blank"
               >
                 Politique de confidentialité
-              </a>{" "}
+              </Link>{" "}
               et{" "}
-              <a
-                className="text-primary underline underline-offset-2"
+              <Link
+                className="text-inherit text-sm underline underline-offset-2"
                 href="https://policies.google.com/terms"
                 rel="noreferrer"
                 target="_blank"
               >
                 Conditions d&apos;utilisation
-              </a>{" "}
+              </Link>{" "}
               s&apos;appliquent.
             </p>
           </form>
