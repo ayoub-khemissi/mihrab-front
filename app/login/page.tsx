@@ -6,12 +6,57 @@ import { Link } from "@heroui/link";
 import { Checkbox } from "@heroui/checkbox";
 import { FaGoogle, FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { addToast } from "@heroui/toast";
 
+import { fetchWrapper } from "@/lib/Fetcher";
+import getResponseCodeMessage from "@/utils/ResponseCodesMessages";
 import Section from "@/components/section";
 import HalfPageBg from "@/components/half-page-bg";
 
 export default function LoginPage() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true);
+    const response = await fetchWrapper(`/login/classical`, "POST", {
+      email,
+      password,
+    });
+
+    if (response?.ok) {
+      const responseData = await response?.json();
+      const code = responseData?.code;
+      const data = responseData?.data;
+
+      localStorage.setItem("user", JSON.stringify(data));
+      addToast({
+        title: "Connexion réussie",
+        description: getResponseCodeMessage(code),
+        color: "success",
+        timeout: 3000,
+        shouldShowTimeoutProgress: true,
+      });
+      router.push("/home");
+    } else {
+      const data = await response?.json();
+      const code = data?.code;
+
+      addToast({
+        title: "Erreur lors de la connexion",
+        description: getResponseCodeMessage(code),
+        color: "danger",
+        timeout: 3000,
+        shouldShowTimeoutProgress: true,
+      });
+    }
+    setLoading(false);
+  };
 
   return (
     <>
@@ -23,7 +68,7 @@ export default function LoginPage() {
           </h1>
           <form
             className="w-full max-w-md bg-secondary p-0 flex flex-col gap-6"
-            onSubmit={(e) => e.preventDefault()}
+            onSubmit={handleSubmit}
           >
             <div className="flex flex-col gap-2">
               <label
@@ -33,11 +78,14 @@ export default function LoginPage() {
                 Adresse email
               </label>
               <Input
+                required
                 className="bg-transparent border-b border-gray-200 rounded-none px-0 py-2 placeholder:text-gray-400 focus:ring-0 focus:border-primary"
                 id="email"
                 name="email"
                 placeholder="exemple@mosquee.fr"
                 type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             <div className="flex flex-col gap-2 relative">
@@ -49,11 +97,14 @@ export default function LoginPage() {
               </label>
               <div className="relative">
                 <Input
+                  required
                   className="relative bg-transparent border-b border-gray-200 rounded-none px-0 py-2 placeholder:text-gray-400 focus:ring-0 focus:border-primary"
                   id="password"
                   name="password"
                   placeholder="••••••••••"
                   type={showPassword ? "text" : "password"}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
                 <button
                   aria-label={
@@ -79,6 +130,8 @@ export default function LoginPage() {
             </Checkbox>
             <Button
               className="bg-primary text-secondary py-3 rounded-md font-normal"
+              disabled={loading}
+              isLoading={loading}
               type="submit"
             >
               Me connecter
