@@ -1,53 +1,19 @@
-# Next.js & HeroUI Template
+### Mihrab
 
-This is a template for creating applications using Next.js 14 (app directory) and HeroUI (v2).
+Note: Terms in parentheses are business terms found in the code and database for the sake of consistency and identification.
 
-[Try it on CodeSandbox](https://githubbox.com/heroui-inc/heroui/next-app-template)
+Mihrab is an application that connects Imams (imam) and Mosque Managers (mosque manager).
 
-## Technologies Used
+An Imam can register/login and complete their profile (register profile) to be listed on the platform.
+A Mosque Manager can register/login and complete both their profile (register profile) and the profile of their Mosque to be listed on the platform.
 
-- [Next.js 14](https://nextjs.org/docs/getting-started)
-- [HeroUI v2](https://heroui.com/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Tailwind Variants](https://tailwind-variants.org)
-- [TypeScript](https://www.typescriptlang.org/)
-- [Framer Motion](https://www.framer.com/motion/)
-- [next-themes](https://github.com/pacocoursey/next-themes)
+A Mosque Manager can create a job offer by providing the criteria for the Imam they are seeking; they can also cancel it.
+An Imam can apply (apply/application) to a job offer and can also cancel their application.
 
-## How to Use
+A Mosque Manager can send an invitation to an Imam for a job offer.
 
-### Use the template with create-next-app
+A Mosque Manager can view all applications related to their Mosque and accept or reject them (status).
+An Imam can view the status of all their applications.
 
-To create a new project based on this template using `create-next-app`, run the following command:
-
-```bash
-npx create-next-app -e https://github.com/heroui-inc/next-app-template
-```
-
-### Install dependencies
-
-You can use one of them `npm`, `yarn`, `pnpm`, `bun`, Example using `npm`:
-
-```bash
-npm install
-```
-
-### Run the development server
-
-```bash
-npm run dev
-```
-
-### Setup pnpm (optional)
-
-If you are using `pnpm`, you need to add the following code to your `.npmrc` file:
-
-```bash
-public-hoist-pattern[]=*@heroui/*
-```
-
-After modifying the `.npmrc` file, you need to run `pnpm install` again to ensure that the dependencies are installed correctly.
-
-## License
-
-Licensed under the [MIT license](https://github.com/heroui-inc/next-app-template/blob/main/LICENSE).
+A Mosque Manager/Imam will receive a notification when the status of an application changes.
+An Imam will receive a notification if invited by a Mosque Manager to a job offer.
