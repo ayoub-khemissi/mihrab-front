@@ -16,3 +16,4 @@ export * from "./NotificationType";
 export * from "./MosqueManagerPosition";
 export * from "./UserStatus";
 export * from "./UserRole";
+export * from "./ImamZone";

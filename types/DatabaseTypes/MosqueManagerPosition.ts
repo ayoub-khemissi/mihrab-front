@@ -1,4 +1,5 @@
 export const MosqueManagerPosition = {
+  NONE: "none",
   PRESIDENT: "president",
   SECRETARY: "secretary",
   TREASURER: "treasurer",
