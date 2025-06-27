@@ -14,6 +14,10 @@ const getResponseCodeMessage = (code: keyof typeof ResponseCodes) => {
       return "Une erreur interne est survenue.";
     case ResponseCodes.REGISTER_SUCCESS.code:
       return "Inscription réussie.";
+    case ResponseCodes.REGISTER_PROFILE_MOSQUE_MANAGER_SUCCESS.code:
+      return "Profil responsable de mosquée enregistré avec succès.";
+    case ResponseCodes.REGISTER_PROFILE_IMAM_SUCCESS.code:
+      return "Profil imam enregistré avec succès.";
     case ResponseCodes.REGISTER_FAILED_USER_ALREADY_EXISTS.code:
       return "Cet email est déjà utilisé.";
     case ResponseCodes.LOGIN_SUCCESS.code:

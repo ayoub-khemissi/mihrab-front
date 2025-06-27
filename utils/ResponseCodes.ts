@@ -11,6 +11,16 @@ const ResponseCodes = {
     code: "REGISTER_FAILED_USER_ALREADY_EXISTS",
   },
 
+  REGISTER_PROFILE_MOSQUE_MANAGER_SUCCESS: {
+    status: 201,
+    code: "REGISTER_PROFILE_MOSQUE_MANAGER_SUCCESS",
+  },
+
+  REGISTER_PROFILE_IMAM_SUCCESS: {
+    status: 201,
+    code: "REGISTER_PROFILE_IMAM_SUCCESS",
+  },
+
   LOGIN_SUCCESS: { status: 200, code: "LOGIN_SUCCESS" },
 
   LOGOUT_SUCCESS: { status: 200, code: "LOGOUT_SUCCESS" },
