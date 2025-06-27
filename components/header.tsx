@@ -27,6 +27,7 @@ import { User } from "@/types/DatabaseTypes/User";
 import { UserRole } from "@/types/DatabaseTypes/UserRole";
 import { fetchWrapper } from "@/lib/Fetcher";
 import getResponseCodeMessage from "@/utils/ResponseCodesMessages";
+import { LocalStorageKeys } from "@/types/LocalStorageKeys";
 
 export const Header = () => {
   const searchParams = useSearchParams();
@@ -51,10 +52,10 @@ export const Header = () => {
       setProfileSelected(profile as "imam" | "mosque");
     }
 
-    const localUser = localStorage.getItem("user");
+    const userData = localStorage.getItem(LocalStorageKeys.USER_DATA);
 
-    if (localUser) {
-      setUser(JSON.parse(localUser));
+    if (userData) {
+      setUser(JSON.parse(userData).user);
     }
   }, [searchParams]);
 
@@ -68,7 +69,7 @@ export const Header = () => {
     const response = await fetchWrapper("/logout", "POST");
 
     if (response?.ok) {
-      localStorage.removeItem("user");
+      localStorage.removeItem(LocalStorageKeys.USER_DATA);
       router.push("/");
       setUser(null);
 
