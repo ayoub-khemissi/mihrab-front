@@ -8,10 +8,10 @@ import {
 } from "react-icons/fa6";
 
 import { mockImams } from "@/mocks/imams";
-import { ImamWorkingHour } from "@/types/imam-working-hour";
-import { ImamProfile } from "@/types/imam-profile";
-import { ImamLanguage } from "@/types/imam-language";
-import { ImamContractType } from "@/types/imam-contract-type";
+import { ImamLanguage } from "@/types/DatabaseTypes/ImamLanguage";
+import { ImamContractType } from "@/types/DatabaseTypes/ImamContractType";
+import { ImamWorkingHour } from "@/types/DatabaseTypes/ImamWorkingHour";
+import { ImamProfile } from "@/types/DatabaseTypes/ImamProfile";
 
 const languageToText = (language: ImamLanguage) => {
   switch (language.language) {
@@ -44,7 +44,7 @@ const workingHourToText = (workingHour: ImamWorkingHour) => {
 
 const getLocation = (imam: ImamProfile) => {
   if (imam.zones && imam.zones.length > 0) {
-    return `${imam.zones[0].city} (${imam.zones[0].zip_code?.substring(0, 2)})`;
+    return `${imam.zones[0].city} (${imam.zones[0].zipCode?.substring(0, 2)})`;
   }
 
   return "";
@@ -56,7 +56,9 @@ const getFullName = (imam: ImamProfile) => {
 
 const getLanguages = (imam: ImamProfile) => {
   if (imam.languages && imam.languages.length > 0) {
-    return imam.languages.map((l) => languageToText(l)).join(", ");
+    return imam.languages
+      .map((l: ImamLanguage) => languageToText(l))
+      .join(", ");
   }
 
   return "";
@@ -90,6 +92,7 @@ export default function ClosestImams() {
       <button
         key={imam.user.id + "-" + idx}
         className="bg-secondary rounded-xl shadow-md w-full max-w-[420px] flex flex-col p-6 items-start border border-gray-200 hover:shadow-lg transition-shadow relative text-sm"
+        type="button"
       >
         <div className="flex items-center justify-between w-full mb-4">
           <div className="flex items-center gap-3">

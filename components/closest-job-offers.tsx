@@ -9,11 +9,11 @@ import { FaMosque } from "react-icons/fa6";
 import clsx from "clsx";
 
 import { mockJobOffers } from "@/mocks/job-offers";
-import { JobOffer } from "@/types/job-offer";
-import { JobOfferLanguage } from "@/types/job-offer-language";
-import { JobOfferWorkingHour } from "@/types/job-offer-working-hour";
-import { JobOfferContractType } from "@/types/job-offer-contract-type";
-import { JobOfferQuranReading } from "@/types/job-offer-quran-reading";
+import { JobOfferLanguage } from "@/types/DatabaseTypes/JobOfferLanguage";
+import { JobOfferContractType } from "@/types/DatabaseTypes/JobOfferContractType";
+import { JobOfferWorkingHour } from "@/types/DatabaseTypes/JobOfferWorkingHour";
+import { JobOfferQuranReading } from "@/types/DatabaseTypes/JobOfferQuranReading";
+import { JobOffer } from "@/types/DatabaseTypes/JobOffer";
 
 const languageToText = (language: JobOfferLanguage) => {
   switch (language.language) {
@@ -89,6 +89,7 @@ export default function ClosestJobOffers() {
       <button
         key={jobOffer.id + "-" + idx}
         className="bg-secondary rounded-xl shadow-md w-full max-w-[420px] flex flex-col p-6 gap-4 border border-gray-200 hover:shadow-lg transition-shadow relative text-sm"
+        type="button"
       >
         <div className="flex gap-4 w-full">
           <div className="min-w-12 min-h-12 max-w-12 max-h-12 rounded-full bg-primary/10 flex items-center justify-center overflow-hidden">
