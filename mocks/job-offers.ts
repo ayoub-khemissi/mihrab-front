@@ -1,6 +1,6 @@
 import { mockMosques } from "./mosques";
 
-import { JobOffer } from "@/types/job-offer";
+import { JobOffer } from "@/types/DatabaseTypes/JobOffer";
 
 export const mockJobOffers: JobOffer[] = [
   {
