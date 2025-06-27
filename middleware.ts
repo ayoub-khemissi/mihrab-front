@@ -108,7 +108,7 @@ export default function middleware(req: NextRequest) {
   const mosqueManagerRoutes: string[] = [
     ...sharedRoutes,
     "/home",
-    "/imam",
+    "/imams",
     "/profile",
     "/publish",
   ];
