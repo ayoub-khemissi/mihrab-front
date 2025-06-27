@@ -13,6 +13,7 @@ import Section from "@/components/section";
 import HalfPageBg from "@/components/half-page-bg";
 import { fetchWrapper } from "@/lib/Fetcher";
 import getResponseCodeMessage from "@/utils/ResponseCodesMessages";
+import { LocalStorageKeys } from "@/types/LocalStorageKeys";
 
 export default function RegisterPage() {
   const [email, setEmail] = useState("");
@@ -36,7 +37,7 @@ export default function RegisterPage() {
       const code = responseData?.code;
       const data = responseData?.data;
 
-      localStorage.setItem("user", JSON.stringify(data));
+      localStorage.setItem(LocalStorageKeys.USER_DATA, JSON.stringify(data));
 
       addToast({
         title: "Inscription réussie",
