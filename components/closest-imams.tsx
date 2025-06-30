@@ -8,10 +8,10 @@ import {
 } from "react-icons/fa6";
 
 import { mockImams } from "@/mocks/imams";
-import { ImamLanguage } from "@/types/DatabaseTypes/ImamLanguage";
-import { ImamContractType } from "@/types/DatabaseTypes/ImamContractType";
-import { ImamWorkingHour } from "@/types/DatabaseTypes/ImamWorkingHour";
-import { ImamProfile } from "@/types/DatabaseTypes/ImamProfile";
+import { ImamLanguage } from "@/types/Database/Entities/ImamLanguage";
+import { ImamContract } from "@/types/Database/Entities/ImamContract";
+import { ImamWorkingHour } from "@/types/Database/Entities/ImamWorkingHour";
+import { ImamComposite } from "@/types/Database/Composites/ImamComposite";
 
 const languageToText = (language: ImamLanguage) => {
   switch (language.language) {
@@ -22,8 +22,8 @@ const languageToText = (language: ImamLanguage) => {
   }
 };
 
-const contractTypeToText = (contractType: ImamContractType) => {
-  switch (contractType.contract_type) {
+const contractTypeToText = (imamContract: ImamContract) => {
+  switch (imamContract.contract_type) {
     case "permanent":
       return "CDI";
     case "fixed_term":
@@ -42,19 +42,19 @@ const workingHourToText = (workingHour: ImamWorkingHour) => {
   }
 };
 
-const getLocation = (imam: ImamProfile) => {
+const getLocation = (imam: ImamComposite) => {
   if (imam.zones && imam.zones.length > 0) {
-    return `${imam.zones[0].city} (${imam.zones[0].zipCode?.substring(0, 2)})`;
+    return `${imam.zones[0].city} (${imam.zones[0].zip_code?.substring(0, 2)})`;
   }
 
   return "";
 };
 
-const getFullName = (imam: ImamProfile) => {
+const getFullName = (imam: ImamComposite) => {
   return `${imam.user.first_name} ${imam.user.last_name?.[0]}.`;
 };
 
-const getLanguages = (imam: ImamProfile) => {
+const getLanguages = (imam: ImamComposite) => {
   if (imam.languages && imam.languages.length > 0) {
     return imam.languages
       .map((l: ImamLanguage) => languageToText(l))
@@ -64,17 +64,17 @@ const getLanguages = (imam: ImamProfile) => {
   return "";
 };
 
-const getContractType = (imam: ImamProfile) => {
-  if (imam.contract_type && imam.contract_type.length > 0) {
-    return contractTypeToText(imam.contract_type[0]);
+const getContractType = (imam: ImamComposite) => {
+  if (imam.contracts && imam.contracts.length > 0) {
+    return contractTypeToText(imam.contracts[0]);
   }
 
   return "";
 };
 
-const getWorkingHour = (imam: ImamProfile) => {
-  if (imam.working_hours && imam.working_hours.length > 0) {
-    return workingHourToText(imam.working_hours[0]);
+const getWorkingHour = (imam: ImamComposite) => {
+  if (imam.workingHours && imam.workingHours.length > 0) {
+    return workingHourToText(imam.workingHours[0]);
   }
 
   return "";

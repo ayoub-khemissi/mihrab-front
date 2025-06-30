@@ -9,11 +9,11 @@ import { FaMosque } from "react-icons/fa6";
 import clsx from "clsx";
 
 import { mockJobOffers } from "@/mocks/job-offers";
-import { JobOfferLanguage } from "@/types/DatabaseTypes/JobOfferLanguage";
-import { JobOfferContractType } from "@/types/DatabaseTypes/JobOfferContractType";
-import { JobOfferWorkingHour } from "@/types/DatabaseTypes/JobOfferWorkingHour";
-import { JobOfferQuranReading } from "@/types/DatabaseTypes/JobOfferQuranReading";
-import { JobOffer } from "@/types/DatabaseTypes/JobOffer";
+import { JobOfferLanguage } from "@/types/Database/Entities/JobOfferLanguage";
+import { JobOfferContractType } from "@/types/Database/Entities/JobOfferContractType";
+import { JobOfferWorkingHour } from "@/types/Database/Entities/JobOfferWorkingHour";
+import { JobOfferQuranReading } from "@/types/Database/Entities/JobOfferQuranReading";
+import { JobOfferComposite } from "@/types/Database/Composites/JobOfferComposite";
 
 const languageToText = (language: JobOfferLanguage) => {
   switch (language.language) {
@@ -64,24 +64,28 @@ const quranReadingToText = (quranReading: JobOfferQuranReading) => {
 };
 
 export default function ClosestJobOffers() {
-  const jobOffers: JobOffer[] = mockJobOffers;
+  const jobOfferComposites: JobOfferComposite[] = mockJobOffers;
 
-  return jobOffers.map((jobOffer, idx) => {
-    const mosque = jobOffer.mosque;
-    const urgent = jobOffer.urgent;
-    const languages = jobOffer.languages
-      .map((language) => languageToText(language))
+  return jobOfferComposites.map((jobOfferComposite, idx) => {
+    const jobOffer = jobOfferComposite.jobOffer;
+    const mosque = jobOfferComposite.mosque.mosque;
+    const languages = jobOfferComposite.languages
+      .map((language: JobOfferLanguage) => languageToText(language))
       .join(", ");
-    const dateDebut = jobOffer.working_hours
-      .map((workingHour) => workingHourToText(workingHour))
+    const dateDebut = jobOfferComposite.workingHours
+      .map((workingHour: JobOfferWorkingHour) => workingHourToText(workingHour))
       .join(", ");
-    const typeContrat = jobOffer.contract_types
-      .map((contractType) => contractTypeToText(contractType))
+    const typeContrat = jobOfferComposite.contractTypes
+      .map((contractType: JobOfferContractType) =>
+        contractTypeToText(contractType),
+      )
       .join(", ");
     const lecture =
       "Lecture " +
-      jobOffer.quran_readings
-        .map((quranReading) => quranReadingToText(quranReading))
+      jobOfferComposite.quranReadings
+        .map((quranReading: JobOfferQuranReading) =>
+          quranReadingToText(quranReading),
+        )
         .join(", ");
     const remuneration = jobOffer.remuneration;
 
@@ -108,12 +112,12 @@ export default function ClosestJobOffers() {
           <div className="flex justify-between w-full flex-col gap-1">
             <div className="flex items-start justify-between w-full">
               <span className="font-dmSerifText text-xl text-primary text-left">
-                {jobOffer.title}
+                {jobOfferComposite.jobOffer.title}
               </span>
               <span
                 className={clsx(
                   `bg-danger font-semibold text-secondary text-xs py-2 px-3 rounded-md ml-2 uppercase`,
-                  urgent ? "visible" : "invisible",
+                  jobOffer.urgent ? "visible" : "invisible",
                 )}
               >
                 Urgent
