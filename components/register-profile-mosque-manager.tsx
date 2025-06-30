@@ -23,29 +23,30 @@ import Image from "next/image";
 
 import Section from "@/components/section";
 import HalfPageBg from "@/components/half-page-bg";
-import { MosqueService, MosqueManagerPosition } from "@/types/DatabaseTypes";
 import { fetchWrapper } from "@/lib/Fetcher";
 import getResponseCodeMessage from "@/utils/ResponseCodesMessages";
-import { Media } from "@/types/FormTypes/Media";
+import { Media } from "@/types/Database/Entities/Media";
 import { LocalStorageKeys } from "@/types/LocalStorageKeys";
-import { RegisterProfileMosqueManagerFormData } from "@/types/FormTypes/RegisterProfileMosqueManagerFormData";
+import { RegisterProfileMosqueManagerFormData } from "@/types/Form/RegisterProfileMosqueManagerFormData";
+import { MosqueServiceEnum } from "@/types/Database/Enums/MosqueServiceEnum";
+import { MosqueManagerPositionEnum } from "@/types/Database/Enums/MosqueManagerPositionEnum";
 
 const SERVICES = {
-  [MosqueService.ABLUTIONS]: "Salle d'ablution",
-  [MosqueService.WOMEN_SPACE]: "Espace pour femmes",
-  [MosqueService.CHILDREN_CLASSES]: "Cours pour enfants",
-  [MosqueService.ADULT_CLASSES]: "Cours pour adultes",
-  [MosqueService.JANAZA]: "Salat janaza",
-  [MosqueService.PARKING]: "Parking",
-  [MosqueService.AID_PRAYER]: "Salat 'eid",
+  [MosqueServiceEnum.ABLUTIONS]: "Salle d'ablution",
+  [MosqueServiceEnum.WOMEN_SPACE]: "Espace pour femmes",
+  [MosqueServiceEnum.CHILDREN_CLASSES]: "Cours pour enfants",
+  [MosqueServiceEnum.ADULT_CLASSES]: "Cours pour adultes",
+  [MosqueServiceEnum.JANAZA]: "Salat janaza",
+  [MosqueServiceEnum.PARKING]: "Parking",
+  [MosqueServiceEnum.AID_PRAYER]: "Salat 'eid",
 };
 
 const MOSQUE_MANAGER_POSITIONS = {
-  [MosqueManagerPosition.NONE]: "Choisir un poste",
-  [MosqueManagerPosition.PRESIDENT]: "Président",
-  [MosqueManagerPosition.SECRETARY]: "Secrétaire",
-  [MosqueManagerPosition.TREASURER]: "Trésorier",
-  [MosqueManagerPosition.MOSQUE_MANAGER]: "Responsable de la Mosquée",
+  [MosqueManagerPositionEnum.NONE]: "Choisir un poste",
+  [MosqueManagerPositionEnum.PRESIDENT]: "Président",
+  [MosqueManagerPositionEnum.SECRETARY]: "Secrétaire",
+  [MosqueManagerPositionEnum.TREASURER]: "Trésorier",
+  [MosqueManagerPositionEnum.MOSQUE_MANAGER]: "Responsable de la Mosquée",
 };
 
 const STEPS = {
@@ -88,7 +89,7 @@ export default function RegisterProfileMosqueManager() {
     zipCode: "",
     phone: "",
     maxCapacity: 0,
-    services: [] as MosqueService[],
+    services: [] as MosqueServiceEnum[],
     social: {
       website: "",
       instagram: "",
@@ -100,7 +101,7 @@ export default function RegisterProfileMosqueManager() {
     lastName: "",
     personalEmail: "",
     personalPhone: "",
-    mosquePosition: MosqueManagerPosition.NONE,
+    mosquePosition: MosqueManagerPositionEnum.NONE,
     supportingDocument: null,
   } as RegisterProfileMosqueManagerFormData);
 
@@ -133,8 +134,8 @@ export default function RegisterProfileMosqueManager() {
     return "";
   };
 
-  const validateMosquePosition = (value: MosqueManagerPosition): string => {
-    if (value === MosqueManagerPosition.NONE) {
+  const validateMosquePosition = (value: MosqueManagerPositionEnum): string => {
+    if (value === MosqueManagerPositionEnum.NONE) {
       return "Veuillez sélectionner votre poste à la mosquée.";
     }
 
@@ -150,6 +151,11 @@ export default function RegisterProfileMosqueManager() {
       if (maxCapacityError) {
         newErrors.maxCapacity = maxCapacityError;
       }
+
+      if (!isValidPhoneNumber(formData.phone, "FR")) {
+        newErrors.phone =
+          "Numéro de téléphone invalide. (Exemple: +33 6 07 08 09 10 ou 06 07 08 09 10)";
+      }
     }
 
     if (currentStep === STEPS.YOUR_PROFILE) {
@@ -160,6 +166,11 @@ export default function RegisterProfileMosqueManager() {
       if (mosquePositionError) {
         newErrors.mosquePosition = mosquePositionError;
       }
+
+      if (!isValidPhoneNumber(formData.personalPhone, "FR")) {
+        newErrors.personalPhone =
+          "Numéro de téléphone invalide. (Exemple: +33 6 07 08 09 10 ou 06 07 08 09 10)";
+      }
     }
 
     setErrors(newErrors);
@@ -167,7 +178,7 @@ export default function RegisterProfileMosqueManager() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleServiceToggle = (service: MosqueService) => {
+  const handleServiceToggle = (service: MosqueServiceEnum) => {
     setFormData((prev) => ({
       ...prev,
       services: prev.services.includes(service)
@@ -199,8 +210,8 @@ export default function RegisterProfileMosqueManager() {
     if (!isLoading) {
       const formDataCopy = structuredClone(formData);
 
-      delete formDataCopy.supportingDocument;
-      delete formDataCopy.mosquePicture;
+      formDataCopy.supportingDocument = null;
+      formDataCopy.mosquePicture = null;
 
       localStorage.setItem(
         LocalStorageKeys.PROFILE_MOSQUE_MANAGER,
@@ -330,7 +341,7 @@ export default function RegisterProfileMosqueManager() {
   const handleMosquePositionChange = (
     event: React.ChangeEvent<HTMLSelectElement>,
   ) => {
-    const value = event.target.value as MosqueManagerPosition;
+    const value = event.target.value as MosqueManagerPositionEnum;
 
     setFormData((prev) => ({
       ...prev,
@@ -397,10 +408,12 @@ export default function RegisterProfileMosqueManager() {
     }
 
     const supportingDocument: Media = {
+      id: "",
       name: fileName,
       extension: fileExtension,
       size: fileSize,
       content: fileContent,
+      created_at: "",
     };
 
     setFormData((prev) => ({
@@ -443,7 +456,9 @@ export default function RegisterProfileMosqueManager() {
       resetMosquePictureRefValue();
 
       return;
-    } else if (!VALID_MOSQUE_PICTURE_EXTENSIONS.includes(`.${fileExtension}`)) {
+    }
+
+    if (!VALID_MOSQUE_PICTURE_EXTENSIONS.includes(`.${fileExtension}`)) {
       addToast({
         title: "Format de fichier non supporté.",
         description: `Le fichier doit être au format ${VALID_MOSQUE_PICTURE_EXTENSIONS.join(
@@ -462,10 +477,12 @@ export default function RegisterProfileMosqueManager() {
     }
 
     const mosquePicture: Media = {
+      id: "",
       name: fileName,
       extension: fileExtension,
       size: fileSize,
       content: fileContent,
+      created_at: "",
     };
 
     setFormData((prev) => ({ ...prev, mosquePicture: mosquePicture }));
@@ -542,19 +559,19 @@ export default function RegisterProfileMosqueManager() {
                 <div className="flex flex-col gap-2">
                   <Image
                     alt="Mosque picture"
-                    className="w-28 h-28 rounded-full object-cover cursor-pointer"
-                    height={112}
+                    className="w-20 h-20 rounded-full object-cover cursor-pointer"
+                    height={80}
                     src={`data:image/${formData.mosquePicture.extension};base64,${formData.mosquePicture.content}`}
-                    width={112}
+                    width={80}
                     onClick={handleMosquePictureClick}
                   />
                 </div>
               ) : (
                 <button
-                  className="w-28 h-28 rounded-full cursor-pointer flex items-center justify-center bg-primary"
+                  className="w-20 h-20 rounded-full cursor-pointer flex items-center justify-center bg-primary"
                   onClick={handleMosquePictureClick}
                 >
-                  <FaCamera className="text-white text-4xl" />
+                  <FaCamera className="text-white text-3xl" />
                 </button>
               )}
               <label
@@ -673,15 +690,12 @@ export default function RegisterProfileMosqueManager() {
               </label>
               <Input
                 isRequired
-                errorMessage={
-                  !isValidPhoneNumber(formData.phone, "FR")
-                    ? "Numéro de téléphone invalide. (Exemple: +33 6 07 08 09 10 ou 06 07 08 09 10)"
-                    : ""
-                }
+                errorMessage={errors?.phone || ""}
                 id="phone"
-                isInvalid={!isValidPhoneNumber(formData.phone, "FR")}
+                isInvalid={!!errors?.phone || false}
                 name="phone"
                 placeholder="06 07 08 09 10"
+                type="tel"
                 value={formData.phone}
                 onChange={handleInputChange}
               />
@@ -726,12 +740,14 @@ export default function RegisterProfileMosqueManager() {
                   <Button
                     key={key}
                     className={`px-3 py-2 rounded border transition-all text-sm ${
-                      formData.services.includes(key as MosqueService)
+                      formData.services.includes(key as MosqueServiceEnum)
                         ? "bg-primary text-white border-primary"
                         : "bg-white text-primary border-gray-300"
                     } hover:bg-primary hover:text-white hover:border-primary`}
                     type="button"
-                    onPress={() => handleServiceToggle(key as MosqueService)}
+                    onPress={() =>
+                      handleServiceToggle(key as MosqueServiceEnum)
+                    }
                   >
                     {value}
                   </Button>
@@ -967,13 +983,9 @@ export default function RegisterProfileMosqueManager() {
               </label>
               <Input
                 isRequired
-                errorMessage={
-                  !isValidPhoneNumber(formData.personalPhone, "FR")
-                    ? "Numéro de téléphone invalide. (Exemple: +33 6 07 08 09 10 ou 06 07 08 09 10)"
-                    : ""
-                }
+                errorMessage={errors?.personalPhone || ""}
                 id="personalPhone"
-                isInvalid={!isValidPhoneNumber(formData.personalPhone, "FR")}
+                isInvalid={!!errors?.personalPhone || false}
                 name="personalPhone"
                 placeholder="06 07 08 09 10"
                 type="tel"
