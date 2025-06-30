@@ -1,104 +1,150 @@
 import { mockMosques } from "./mosques";
 
-import { JobOffer } from "@/types/DatabaseTypes/JobOffer";
+import { JobOfferComposite } from "@/types/Database/Composites/JobOfferComposite";
+import {
+  JobOffer,
+  JobOfferBenefit,
+  JobOfferContractType,
+  JobOfferLanguage,
+  JobOfferQuranReading,
+  JobOfferSkill,
+  JobOfferWorkingHour,
+} from "@/types/Database";
 
-export const mockJobOffers: JobOffer[] = [
+export const mockJobOffers: JobOfferComposite[] = [
   {
-    id: 1,
+    jobOffer: {
+      id: "1",
+      mosque_id: mockMosques[0].mosque.id,
+      title: "Imam Ramadan 2026",
+      description: "Nous recherchons un imam pour le mois de Ramadan.",
+      remuneration: 2150,
+      urgent: true,
+      status: "published",
+      created_at: "1724832000000",
+      updated_at: "1724832000000",
+    } as JobOffer,
     mosque: mockMosques[0],
-    title: "Imam Ramadan 2026",
-    description: "Nous recherchons un imam pour le mois de Ramadan.",
-    urgent: true,
-    status: "published",
     benefits: [
-      { benefit: "apartment", created_at: 0, updated_at: 0 },
-      { benefit: "administrative_assistant", created_at: 0, updated_at: 0 },
-    ],
-    contract_types: [{ contract_type: "fixed_term", created_at: 0 }],
-    languages: [
-      { language: "arabic", level: "fluent", created_at: 0, updated_at: 0 },
-      { language: "french", level: "advanced", created_at: 0, updated_at: 0 },
-    ],
-    quran_readings: [
       {
+        job_offer_id: "1",
+        benefit: "apartment",
+        created_at: "1724832000000",
+      },
+      {
+        job_offer_id: "1",
+        benefit: "administrative_assistant",
+        created_at: "1724832000000",
+      },
+    ] as JobOfferBenefit[],
+    contractTypes: [
+      { contract_type: "fixed_term", created_at: "1724832000000" },
+    ] as JobOfferContractType[],
+    languages: [
+      { language: "arabic", level: "fluent", created_at: "1724832000000" },
+      { language: "french", level: "advanced", created_at: "1724832000000" },
+    ] as JobOfferLanguage[],
+    quranReadings: [
+      {
+        job_offer_id: "1",
         riwaya: "hafs",
         hizb_hifz: "twenty_thirty",
         tajweed_mastery: true,
         ijazah: false,
-        created_at: 0,
-        updated_at: 0,
+        created_at: "1724832000000",
       },
-    ],
-    remuneration: 2150,
+    ] as JobOfferQuranReading[],
     skills: [
-      { skill: "five_prayers", created_at: 0, updated_at: 0 },
-      { skill: "jumuah", created_at: 0, updated_at: 0 },
-    ],
-    working_hours: [{ working_hour: "full_time", created_at: 0 }],
-    created_at: 0,
-    updated_at: 0,
+      { skill: "five_prayers", created_at: "1724832000000" },
+      { skill: "jumuah", created_at: "1724832000000" },
+    ] as JobOfferSkill[],
+    workingHours: [
+      { working_hour: "full_time", created_at: "1724832000000" },
+    ] as JobOfferWorkingHour[],
   },
   {
-    id: 2,
+    jobOffer: {
+      id: "2",
+      mosque_id: mockMosques[1].mosque.id,
+      title: "Imam annuel",
+      description: "Poste d'imam à plein temps.",
+      remuneration: 2000,
+      urgent: false,
+      status: "published",
+      created_at: "1724832000000",
+      updated_at: "1724832000000",
+    } as JobOffer,
     mosque: mockMosques[1],
-    title: "Imam annuel",
-    description: "Poste d'imam à plein temps.",
-    urgent: false,
-    status: "published",
     benefits: [
-      { benefit: "apartment", created_at: 0, updated_at: 0 },
-      { benefit: "library", created_at: 0, updated_at: 0 },
-    ],
-    contract_types: [{ contract_type: "permanent", created_at: 0 }],
+      { benefit: "apartment", created_at: "1724832000000" },
+      { benefit: "library", created_at: "1724832000000" },
+    ] as JobOfferBenefit[],
+    contractTypes: [
+      { contract_type: "permanent", created_at: "1724832000000" },
+    ] as JobOfferContractType[],
     languages: [
-      { language: "arabic", level: "advanced", created_at: 0, updated_at: 0 },
-      { language: "french", level: "fluent", created_at: 0, updated_at: 0 },
-    ],
-    quran_readings: [
+      { language: "arabic", level: "advanced", created_at: "1724832000000" },
+      { language: "french", level: "fluent", created_at: "1724832000000" },
+    ] as JobOfferLanguage[],
+    quranReadings: [
       {
         riwaya: "hafs",
         hizb_hifz: "hafiz",
         tajweed_mastery: true,
         ijazah: true,
-        created_at: 0,
-        updated_at: 0,
+        created_at: "1724832000000",
       },
-    ],
+    ] as JobOfferQuranReading[],
     skills: [
-      { skill: "jumuah", created_at: 0, updated_at: 0 },
-      { skill: "conferences", created_at: 0, updated_at: 0 },
-    ],
-    working_hours: [{ working_hour: "full_time", created_at: 0 }],
-    created_at: 0,
-    updated_at: 0,
-    remuneration: 2000,
+      { skill: "jumuah", created_at: "1724832000000" },
+      { skill: "conferences", created_at: "1724832000000" },
+    ] as JobOfferSkill[],
+    workingHours: [
+      { working_hour: "full_time", created_at: "1724832000000" },
+    ] as JobOfferWorkingHour[],
   },
   {
-    id: 3,
+    jobOffer: {
+      id: "3",
+      mosque_id: mockMosques[2].mosque.id,
+      title: "Imam remplaçant",
+      description: "Remplacement durant les vacances d'été.",
+      remuneration: 1900,
+      urgent: false,
+      status: "published",
+      created_at: "1724832000000",
+      updated_at: "1724832000000",
+    } as JobOffer,
     mosque: mockMosques[2],
-    title: "Imam remplaçant",
-    description: "Remplacement durant les vacances d'été.",
-    urgent: false,
-    status: "published",
-    benefits: [{ benefit: "apartment", created_at: 0, updated_at: 0 }],
-    contract_types: [{ contract_type: "occasional", created_at: 0 }],
+    benefits: [
+      { benefit: "apartment", created_at: "1724832000000" },
+    ] as JobOfferBenefit[],
+    contractTypes: [
+      { contract_type: "occasional", created_at: "1724832000000" },
+    ] as JobOfferContractType[],
     languages: [
-      { language: "french", level: "advanced", created_at: 0, updated_at: 0 },
-    ],
-    quran_readings: [
+      {
+        language: "french",
+        level: "advanced",
+        created_at: "1724832000000",
+        job_offer_id: "3",
+      },
+    ] as JobOfferLanguage[],
+    quranReadings: [
       {
         riwaya: "al_duri",
         hizb_hifz: "zero_ten",
         tajweed_mastery: false,
         ijazah: false,
-        created_at: 0,
-        updated_at: 0,
+        created_at: "1724832000000",
+        job_offer_id: "3",
       },
-    ],
-    skills: [{ skill: "aid_prayer", created_at: 0, updated_at: 0 }],
-    working_hours: [{ working_hour: "part_time", created_at: 0 }],
-    created_at: 0,
-    updated_at: 0,
-    remuneration: 1900,
+    ] as JobOfferQuranReading[],
+    skills: [
+      { skill: "aid_prayer", created_at: "1724832000000" },
+    ] as JobOfferSkill[],
+    workingHours: [
+      { working_hour: "part_time", created_at: "1724832000000" },
+    ] as JobOfferWorkingHour[],
   },
 ];

@@ -1,18 +1,30 @@
 import { mockJobOffers } from "./job-offers";
 
-import { ImamProfile } from "@/types/DatabaseTypes/ImamProfile";
-import { User } from "@/types/DatabaseTypes/User";
-import { UserRole, UserStatus } from "@/types/DatabaseTypes";
+import { ImamProfile } from "@/types/Database/Entities/ImamProfile";
+import { User } from "@/types/Database/Entities/User";
+import { UserRoleEnum } from "@/types/Database/Enums/UserRoleEnum";
+import { UserStatusEnum } from "@/types/Database/Enums/UserStatusEnum";
+import { ImamComposite } from "@/types/Database/Composites/ImamComposite";
+import {
+  ImamContract,
+  ImamDiploma,
+  ImamExperience,
+  ImamLanguage,
+  ImamLike,
+  ImamQuranReading,
+  ImamSkill,
+  ImamWorkingHour,
+} from "@/types/Database";
 
-export const mockImams: ImamProfile[] = [
+export const mockImams: ImamComposite[] = [
   {
     user: {
-      id: 1,
+      id: "1",
       email: "ahmed.bensalah@email.com",
       first_name: "Ahmed",
       last_name: "Ben Salah",
-      role: UserRole.IMAM,
-      status: UserStatus.ACTIVE,
+      role: UserRoleEnum.IMAM,
+      status: UserStatusEnum.ACTIVE,
       photo: null,
       alert_email: true,
       alert_sms: true,
@@ -25,94 +37,125 @@ export const mockImams: ImamProfile[] = [
       verify_phone_code: null,
       phone_candidate: null,
       verify_phone_code_created_at: null,
-      created_at: 0,
-      updated_at: 0,
+      created_at: "1724832000000",
+      updated_at: null,
     } as User,
-    bio: "Imam passionné avec 10 ans d'expérience. Spécialisé dans l'enseignement du Coran et la conduite des prières.",
-    contract_type: [
+    profile: {
+      user_id: "1",
+      bio: "Imam passionné avec 10 ans d'expérience. Spécialisé dans l'enseignement du Coran et la conduite des prières.",
+      created_at: "1724832000000",
+      updated_at: null,
+    } as ImamProfile,
+    contracts: [
       {
+        user_id: "1",
         contract_type: "permanent",
-        created_at: 0,
+        created_at: "1724832000000",
       },
-    ],
-    diploma: [
       {
-        diplomaName: "Licence Théologie",
-        organizationName: "Université Al Azhar",
+        user_id: "1",
+        contract_type: "fixed_term",
+        created_at: "1724832000000",
+      },
+      {
+        user_id: "1",
+        contract_type: "occasional",
+        created_at: "1724832000000",
+      },
+    ] as ImamContract[],
+    diplomas: [
+      {
+        diploma_name: "Licence Théologie",
+        organization_name: "Université Al Azhar",
         city: "Le Caire",
         country: "Égypte",
-        yearObtained: 2015,
+        year_obtained: 2015,
         description: "Formation complète en sciences islamiques.",
       },
-    ],
-    working_hours: [
+    ] as ImamDiploma[],
+    workingHours: [
       {
         working_hour: "full_time",
-        created_at: 0,
-        updated_at: 0,
+        created_at: "1724832000000",
+        user_id: "1",
       },
-    ],
-    experience: [
+    ] as ImamWorkingHour[],
+    experiences: [
       {
+        user_id: "1",
         title: "Imam principal",
         city: "Paris",
         country: "France",
         latitude: 48.8566,
         longitude: 2.3522,
-        startDate: "2016",
-        endDate: "2024",
+        start_date: "2016",
+        end_date: "2024",
+        created_at: "1724832000000",
       },
-    ],
+    ] as ImamExperience[],
     skills: [
-      "five_prayers",
-      "jumuah",
-      "tarawih",
-      "quran_classes",
-    ],
+      {
+        skill: "five_prayers",
+        created_at: "1724832000000",
+        user_id: "1",
+      },
+      {
+        skill: "jumuah",
+        created_at: "1724832000000",
+        user_id: "1",
+      },
+      {
+        skill: "tarawih",
+        created_at: "1724832000000",
+        user_id: "1",
+      },
+    ] as ImamSkill[],
     zones: [
       {
         address: "123 Rue de la Mosquée",
         city: "Paris",
-        zipCode: "75001",
+        zip_code: "75001",
         country: "France",
         latitude: 48.8566,
         longitude: 2.3522,
+        created_at: "1724832000000",
+        user_id: "1",
       },
     ],
-    quran_readings: [
+    quranReadings: [
       {
         riwaya: "al_duri",
         hizb_hifz: "zero_ten",
         tajweed_mastery: false,
         ijazah: false,
-        created_at: 0,
+        created_at: "1724832000000",
+        imam_id: "1",
       },
-    ],
-    created_at: 0,
-    updated_at: 0,
+    ] as ImamQuranReading[],
     languages: [
       {
         language: "arabic",
         level: "fluent",
-        created_at: 0,
-        updated_at: 0,
+        created_at: "1724832000000",
+        imam_id: "1",
       },
-    ],
+    ] as ImamLanguage[],
     likes: [
       {
-        job_offer: mockJobOffers[0],
-        created_at: 0,
+        job_offer_id: mockJobOffers[0].jobOffer.id,
+        created_at: "1724832000000",
+        imam_id: "1",
       },
-    ],
+    ] as ImamLike[],
   },
   {
     user: {
-      id: 2,
-      email: "youssef.elamrani@email.com",
-      first_name: "Youssef",
-      last_name: "El Amrani",
-      role: UserRole.IMAM,
-      status: UserStatus.ACTIVE,
+      id: "2",
+      email: "mohamed.benali@email.com",
+      first_name: "Mohamed",
+      last_name: "Ben Ali",
+      role: UserRoleEnum.IMAM,
+      status: UserStatusEnum.ACTIVE,
       photo: null,
       alert_email: true,
       alert_sms: true,
@@ -125,93 +168,139 @@ export const mockImams: ImamProfile[] = [
       verify_phone_code: null,
       phone_candidate: null,
       verify_phone_code_created_at: null,
-      created_at: 0,
-      updated_at: 0,
+      created_at: "1724832000000",
+      updated_at: null,
     } as User,
-    bio: "Imam dynamique, expert en conférences et dialogue interreligieux.",
-    contract_type: [
+    profile: {
+      user_id: "2",
+      bio: "Imam passionné avec 10 ans d'expérience. Spécialisé dans l'enseignement du Coran et la conduite des prières.",
+      created_at: "1724832000000",
+      updated_at: null,
+    } as ImamProfile,
+    contracts: [
       {
+        user_id: "2",
+        contract_type: "permanent",
+        created_at: "1724832000000",
+      },
+      {
+        user_id: "2",
         contract_type: "fixed_term",
-        created_at: 0,
+        created_at: "1724832000000",
       },
-    ],
-    diploma: [
       {
-        diplomaName: "Master Sciences Religieuses",
-        organizationName: "Université de Lyon",
-        city: "Lyon",
+        user_id: "2",
+        contract_type: "occasional",
+        created_at: "1724832000000",
+      },
+    ] as ImamContract[],
+    diplomas: [
+      {
+        diploma_name: "Licence Théologie",
+        organization_name: "Université Al Azhar",
+        city: "Le Caire",
+        country: "Égypte",
+        year_obtained: 2015,
+        description: "Formation complète en sciences islamiques.",
+      },
+    ] as ImamDiploma[],
+    workingHours: [
+      {
+        working_hour: "full_time",
+        created_at: "1724832000000",
+        user_id: "2",
+      },
+    ] as ImamWorkingHour[],
+    experiences: [
+      {
+        user_id: "2",
+        title: "Imam principal",
+        city: "Paris",
         country: "France",
-        yearObtained: 2018,
-        description: "Expertise en dialogue interreligieux et conférences.",
+        latitude: 48.8566,
+        longitude: 2.3522,
+        start_date: "2016",
+        end_date: "2024",
+        created_at: "1724832000000",
       },
-    ],
-    working_hours: [
-      {
-        working_hour: "part_time",
-        created_at: 0,
-        updated_at: 0,
-      },
-    ],
-    experience: [
-      {
-        title: "Imam remplaçant",
-        city: "Lyon",
-        country: "France",
-        latitude: 45.75,
-        longitude: 4.85,
-        startDate: "2019",
-        endDate: "2024",
-      },
-    ],
+    ] as ImamExperience[],
     skills: [
-      "five_prayers",
-      "aid_prayer",
-      "conferences",
-    ],
+      {
+        skill: "five_prayers",
+        created_at: "1724832000000",
+        user_id: "2",
+      },
+      {
+        skill: "jumuah",
+        created_at: "1724832000000",
+        user_id: "2",
+      },
+      {
+        skill: "tarawih",
+        created_at: "1724832000000",
+        user_id: "2",
+      },
+    ] as ImamSkill[],
     zones: [
       {
-        address: "45 Avenue des Fleurs",
-        city: "Lyon",
-        zipCode: "69000",
+        address: "123 Rue de la Mosquée",
+        city: "Paris",
+        zip_code: "75001",
         country: "France",
-        latitude: 45.75,
-        longitude: 4.85,
+        latitude: 48.8566,
+        longitude: 2.3522,
+        created_at: "1724832000000",
+        user_id: "2",
       },
     ],
-    quran_readings: [
+    quranReadings: [
       {
         riwaya: "warsh",
-        hizb_hifz: "twenty_thirty",
+        hizb_hifz: "hafiz",
+        tajweed_mastery: true,
+        ijazah: true,
+        created_at: "1724832000000",
+        imam_id: "2",
+      },
+      {
+        riwaya: "hafs",
+        hizb_hifz: "thirty_forty",
         tajweed_mastery: true,
         ijazah: false,
-        created_at: 0,
+        created_at: "1724832000000",
+        imam_id: "2",
       },
-    ],
-    created_at: 0,
-    updated_at: 0,
+    ] as ImamQuranReading[],
     languages: [
       {
         language: "french",
-        level: "advanced",
-        created_at: 0,
-        updated_at: 0,
+        level: "fluent",
+        created_at: "1724832000000",
+        imam_id: "2",
       },
-    ],
+      {
+        language: "arabic",
+        level: "fluent",
+        created_at: "1724832000000",
+        imam_id: "1",
+      },
+    ] as ImamLanguage[],
     likes: [
       {
-        job_offer: mockJobOffers[0],
-        created_at: 0,
+        job_offer_id: mockJobOffers[0].jobOffer.id,
+        created_at: "1724832000000",
+        imam_id: "1",
       },
-    ],
+    ] as ImamLike[],
   },
   {
     user: {
-      id: 3,
-      email: "karim.benali@email.com",
-      first_name: "Karim",
-      last_name: "Ben Ali",
-      role: UserRole.IMAM,
-      status: UserStatus.ACTIVE,
+      id: "3",
+      email: "yassine.benali@email.com",
+      first_name: "Yassine",
+      last_name: "El Amrani",
+      role: UserRoleEnum.IMAM,
+      status: UserStatusEnum.ACTIVE,
       photo: null,
       alert_email: true,
       alert_sms: true,
@@ -224,83 +313,120 @@ export const mockImams: ImamProfile[] = [
       verify_phone_code: null,
       phone_candidate: null,
       verify_phone_code_created_at: null,
-      created_at: 0,
-      updated_at: 0,
+      created_at: "1724832000000",
+      updated_at: null,
     } as User,
-    bio: "Imam expérimenté, pédagogue et proche des jeunes.",
-    contract_type: [
+    profile: {
+      user_id: "3",
+      bio: "Imam passionné avec 10 ans d'expérience. Spécialisé dans l'enseignement du Coran et la conduite des prières.",
+      created_at: "1724832000000",
+      updated_at: null,
+    } as ImamProfile,
+    contracts: [
       {
+        user_id: "3",
+        contract_type: "permanent",
+        created_at: "1724832000000",
+      },
+      {
+        user_id: "3",
+        contract_type: "fixed_term",
+        created_at: "1724832000000",
+      },
+      {
+        user_id: "3",
         contract_type: "occasional",
-        created_at: 0,
+        created_at: "1724832000000",
       },
-    ],
-    diploma: [
+    ] as ImamContract[],
+    diplomas: [
       {
-        diplomaName: "Licence Arabe",
-        organizationName: "Université Aix-Marseille",
-        city: "Marseille",
-        country: "France",
-        yearObtained: 2017,
-        description: "Formation en langue arabe et culture islamique.",
+        diploma_name: "Licence Théologie",
+        organization_name: "Université Al Azhar",
+        city: "Le Caire",
+        country: "Égypte",
+        year_obtained: 2015,
+        description: "Formation complète en sciences islamiques.",
       },
-    ],
-    working_hours: [
+    ] as ImamDiploma[],
+    workingHours: [
+      {
+        working_hour: "full_time",
+        created_at: "1724832000000",
+        user_id: "3",
+      },
       {
         working_hour: "part_time",
-        created_at: 0,
-        updated_at: 0,
+        created_at: "1724832000000",
+        user_id: "3",
       },
-    ],
-    experience: [
+    ] as ImamWorkingHour[],
+    experiences: [
       {
-        title: "Imam de quartier",
-        city: "Marseille",
+        user_id: "3",
+        title: "Imam principal",
+        city: "Paris",
         country: "France",
-        latitude: 43.2965,
-        longitude: 5.3698,
-        startDate: "2018",
-        endDate: "2024",
+        latitude: 48.8566,
+        longitude: 2.3522,
+        start_date: "2016",
+        end_date: "2024",
+        created_at: "1724832000000",
       },
-    ],
+    ] as ImamExperience[],
     skills: [
-      "five_prayers",
-      "aid_prayer",
-      "quran_classes",
-    ],
+      {
+        skill: "five_prayers",
+        created_at: "1724832000000",
+        user_id: "3",
+      },
+      {
+        skill: "jumuah",
+        created_at: "1724832000000",
+        user_id: "3",
+      },
+      {
+        skill: "tarawih",
+        created_at: "1724832000000",
+        user_id: "3",
+      },
+    ] as ImamSkill[],
     zones: [
       {
-        address: "78 Boulevard Central",
-        city: "Marseille",
-        zipCode: "13000",
+        address: "123 Rue de la Mosquée",
+        city: "Paris",
+        zip_code: "75001",
         country: "France",
-        latitude: 43.2965,
-        longitude: 5.3698,
+        latitude: 48.8566,
+        longitude: 2.3522,
+        created_at: "1724832000000",
+        user_id: "3",
       },
     ],
-    quran_readings: [
+    quranReadings: [
       {
-        riwaya: "qalun",
-        hizb_hifz: "ten_twenty",
+        riwaya: "al_duri",
+        hizb_hifz: "zero_ten",
         tajweed_mastery: false,
         ijazah: false,
-        created_at: 0,
+        created_at: "1724832000000",
+        imam_id: "3",
       },
-    ],
-    created_at: 0,
-    updated_at: 0,
+    ] as ImamQuranReading[],
     languages: [
       {
         language: "arabic",
-        level: "intermediate",
-        created_at: 0,
-        updated_at: 0,
+        level: "fluent",
+        created_at: "1724832000000",
+        imam_id: "3",
       },
-    ],
+    ] as ImamLanguage[],
     likes: [
       {
-        job_offer: mockJobOffers[0],
-        created_at: 0,
+        job_offer_id: mockJobOffers[0].jobOffer.id,
+        created_at: "1724832000000",
+        imam_id: "3",
       },
-    ],
+    ] as ImamLike[],
   },
 ];
