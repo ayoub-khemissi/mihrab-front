@@ -23,8 +23,8 @@ import {
 import { addToast } from "@heroui/toast";
 
 import { Logo } from "@/components/icons";
-import { User } from "@/types/DatabaseTypes/User";
-import { UserRole } from "@/types/DatabaseTypes/UserRole";
+import { User } from "@/types/Database/Entities/User";
+import { UserRoleEnum } from "@/types/Database/Enums/UserRoleEnum";
 import { fetchWrapper } from "@/lib/Fetcher";
 import getResponseCodeMessage from "@/utils/ResponseCodesMessages";
 import { LocalStorageKeys } from "@/types/LocalStorageKeys";
@@ -59,9 +59,9 @@ export const Header = () => {
     }
   }, [searchParams]);
 
-  const isImam = user?.role === UserRole.IMAM;
-  const isMosqueManager = user?.role === UserRole.MOSQUE_MANAGER;
-  const isAdmin = user?.role === UserRole.ADMIN;
+  const isImam = user?.role === UserRoleEnum.IMAM;
+  const isMosqueManager = user?.role === UserRoleEnum.MOSQUE_MANAGER;
+  const isAdmin = user?.role === UserRoleEnum.ADMIN;
 
   const disconnect = async () => {
     setIsMenuOpen(false);

@@ -1,8 +1,8 @@
-import { UserRole, UserStatus } from "./DatabaseTypes";
+import { UserRoleEnum, UserStatusEnum } from "./Database";
 
 export interface CustomJwtPayload {
   email: string | null;
   id: bigint | null;
-  role: UserRole | null;
-  status: UserStatus | null;
+  role: UserRoleEnum | null;
+  status: UserStatusEnum | null;
 }

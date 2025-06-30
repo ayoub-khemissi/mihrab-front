@@ -2,16 +2,16 @@
 
 import { useRouter } from "next/navigation";
 
-import { UserRole } from "@/types/DatabaseTypes";
+import { UserRoleEnum } from "@/types/Database/Enums/UserRoleEnum";
 import Section from "@/components/section";
 
 export default function RoleSelectionPage() {
   const router = useRouter();
 
-  const handleRoleSelection = (role: UserRole) => {
+  const handleRoleSelection = (role: UserRoleEnum) => {
     switch (role) {
-      case UserRole.IMAM:
-      case UserRole.MOSQUE_MANAGER:
+      case UserRoleEnum.IMAM:
+      case UserRoleEnum.MOSQUE_MANAGER:
         localStorage.setItem("role", role);
         router.push("/register-profile");
         break;
@@ -30,7 +30,7 @@ export default function RoleSelectionPage() {
           <button
             className="group relative flex flex-col justify-center items-center w-full min-h-[300px] lg:min-h-[500px] rounded-xl bg-[url('/assets/bg/mosque-inside.jpg')] bg-cover bg-center shadow-lg overflow-hidden cursor-pointer hover:scale-105 transition-all duration-300"
             type="button"
-            onClick={() => handleRoleSelection(UserRole.IMAM)}
+            onClick={() => handleRoleSelection(UserRoleEnum.IMAM)}
           >
             <div className="absolute left-0 top-0 h-full w-full bg-primary/60 group-hover:bg-primary/30 transition-all duration-300 z-0" />
             <div className="relative z-10 space-y-4">
@@ -44,7 +44,7 @@ export default function RoleSelectionPage() {
           <button
             className="group relative flex flex-col justify-center items-center w-full min-h-[300px] lg:min-h-[500px] rounded-xl bg-[url('/assets/bg/mosque-6.jpg')] bg-cover bg-center shadow-lg overflow-hidden cursor-pointer hover:scale-105 transition-all duration-300"
             type="button"
-            onClick={() => handleRoleSelection(UserRole.MOSQUE_MANAGER)}
+            onClick={() => handleRoleSelection(UserRoleEnum.MOSQUE_MANAGER)}
           >
             <div className="absolute left-0 top-0 h-full w-full bg-primary/60 group-hover:bg-primary/30 transition-all duration-300 z-0" />
             <div className="relative z-10 space-y-4">

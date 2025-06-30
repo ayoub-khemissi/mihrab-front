@@ -4,30 +4,30 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 import Loading from "@/components/loading";
-import { UserRole } from "@/types/DatabaseTypes";
+import { UserRoleEnum } from "@/types/Database/Enums/UserRoleEnum";
 import RegisterProfileMosqueManager from "@/components/register-profile-mosque-manager";
 import RegisterProfileImam from "@/components/register-profile-imam";
 
 export default function RegisterProfilePage() {
   const router = useRouter();
-  const [role, setRole] = useState<UserRole>(UserRole.NONE);
+  const [role, setRole] = useState<UserRoleEnum>(UserRoleEnum.NONE);
 
   useEffect(() => {
     const role = localStorage.getItem("role");
 
-    if (role !== UserRole.IMAM && role !== UserRole.MOSQUE_MANAGER) {
+    if (role !== UserRoleEnum.IMAM && role !== UserRoleEnum.MOSQUE_MANAGER) {
       router.push("/role-selection");
 
       return;
     }
-    setRole(role as UserRole);
+    setRole(role as UserRoleEnum);
   }, []);
 
-  if (role === UserRole.NONE) {
+  if (role === UserRoleEnum.NONE) {
     return <Loading />;
   }
 
-  return role === UserRole.IMAM ? (
+  return role === UserRoleEnum.IMAM ? (
     <RegisterProfileImam />
   ) : (
     <RegisterProfileMosqueManager />

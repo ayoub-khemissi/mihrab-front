@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { decode } from "jsonwebtoken";
 
-import { UserStatus, UserRole } from "./types/DatabaseTypes";
+import { UserStatusEnum, UserRoleEnum } from "./types/Database";
 import { CustomJwtPayload } from "./types/CustomJwtPayload";
 
 const getDecodedJwt = (req: NextRequest) => {
@@ -63,11 +63,11 @@ export default function middleware(req: NextRequest) {
   const status = decodedJwt.status;
 
   const isLoggedIn = email && id;
-  const isSuspended = status === UserStatus.SUSPENDED;
-  const hasNoRole = role === UserRole.NONE;
-  const isImam = role === UserRole.IMAM;
-  const isMosqueManager = role === UserRole.MOSQUE_MANAGER;
-  const isAdmin = role === UserRole.ADMIN;
+  const isSuspended = status === UserStatusEnum.SUSPENDED;
+  const hasNoRole = role === UserRoleEnum.NONE;
+  const isImam = role === UserRoleEnum.IMAM;
+  const isMosqueManager = role === UserRoleEnum.MOSQUE_MANAGER;
+  const isAdmin = role === UserRoleEnum.ADMIN;
 
   // Shared routes
   const sharedRoutes: string[] = [
