@@ -1,6 +1,5 @@
-import { MosqueManagerPosition, MosqueService } from "../DatabaseTypes";
-
-import { Media } from "./Media";
+import { MosqueManagerPositionEnum, MosqueServiceEnum } from "../Database";
+import { Media } from "../Database/Entities/Media";
 
 export interface RegisterProfileMosqueManagerFormData {
   mosqueName: string;
@@ -11,7 +10,7 @@ export interface RegisterProfileMosqueManagerFormData {
   zipCode: string;
   phone: string;
   maxCapacity: number;
-  services: MosqueService[];
+  services: MosqueServiceEnum[];
   social: {
     website: string;
     instagram: string;
@@ -23,6 +22,6 @@ export interface RegisterProfileMosqueManagerFormData {
   lastName: string;
   personalEmail: string;
   personalPhone: string;
-  mosquePosition: MosqueManagerPosition;
+  mosquePosition: MosqueManagerPositionEnum;
   supportingDocument?: Media | null;
 }
