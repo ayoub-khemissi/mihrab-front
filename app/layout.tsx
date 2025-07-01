@@ -5,6 +5,7 @@ import clsx from "clsx";
 import { Suspense } from "react";
 import { ReCaptchaProvider } from "next-recaptcha-v3";
 import { ToastProvider } from "@heroui/toast";
+import { SessionProvider } from "next-auth/react";
 
 import { Providers } from "./providers";
 
@@ -51,17 +52,19 @@ export default function RootLayout({
         )}
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "light" }}>
-          <ReCaptchaProvider
-            reCaptchaKey={NEXT_PUBLIC_GOOGLE_RECAPTCHA_SITE_KEY}
-          >
-            <ToastProvider maxVisibleToasts={3} placement="bottom-center" />
-            <Suspense fallback={<Loading />}>
-              <Header />
-              <Container>{children}</Container>
-              <Footer />
-              <ScrollToTop />
-            </Suspense>
-          </ReCaptchaProvider>
+          <SessionProvider>
+            <ReCaptchaProvider
+              reCaptchaKey={NEXT_PUBLIC_GOOGLE_RECAPTCHA_SITE_KEY}
+            >
+              <ToastProvider maxVisibleToasts={3} placement="bottom-center" />
+              <Suspense fallback={<Loading />}>
+                <Header />
+                <Container>{children}</Container>
+                <Footer />
+                <ScrollToTop />
+              </Suspense>
+            </ReCaptchaProvider>
+          </SessionProvider>
         </Providers>
       </body>
     </html>
