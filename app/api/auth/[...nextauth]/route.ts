@@ -7,7 +7,7 @@ import {
   NEXTAUTH_SECRET,
 } from "@/config/config";
 
-export const authOptions = {
+const authOptions = {
   providers: [
     GoogleProvider({
       clientId: GOOGLE_CLIENT_ID || "",
