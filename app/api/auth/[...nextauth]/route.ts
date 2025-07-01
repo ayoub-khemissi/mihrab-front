@@ -1,3 +1,5 @@
+import type { NextAuthOptions } from "next-auth";
+
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 
@@ -7,7 +9,8 @@ import {
   NEXTAUTH_SECRET,
 } from "@/config/config";
 
-const authOptions = {
+const authOptions: NextAuthOptions = {
+  debug: process.env.NODE_ENV === "development",
   providers: [
     GoogleProvider({
       clientId: GOOGLE_CLIENT_ID || "",
@@ -22,18 +25,28 @@ const authOptions = {
     }),
   ],
   callbacks: {
-    async jwt({ token, account }: { token: any; account: any }) {
+    async jwt({ token, account }) {
       if (account) {
         token.googleJwt = account.id_token;
       }
 
       return token;
     },
-    async session({ session, token }: { session: any; token: any }) {
+    async session({ session, token }) {
       session.googleJwt = token.googleJwt;
 
       return session;
     },
+    async redirect({ url, baseUrl }) {
+      if (url.startsWith(baseUrl)) return url;
+      if (url.startsWith("/")) return `${baseUrl}${url}`;
+
+      return baseUrl;
+    },
+  },
+  pages: {
+    signIn: "/login",
+    error: "/login",
   },
   secret: NEXTAUTH_SECRET,
 };

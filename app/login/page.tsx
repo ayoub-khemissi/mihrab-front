@@ -4,7 +4,7 @@ import { Button } from "@heroui/button";
 import { Input } from "@heroui/input";
 import { Link } from "@heroui/link";
 import { Checkbox } from "@heroui/checkbox";
-import { FaGoogle, FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { addToast } from "@heroui/toast";
@@ -13,6 +13,7 @@ import { fetchWrapper } from "@/lib/Fetcher";
 import getResponseCodeMessage from "@/utils/ResponseCodesMessages";
 import Section from "@/components/section";
 import HalfPageBg from "@/components/half-page-bg";
+import { GoogleAuthButton } from "@/components/google-auth-button";
 import { LocalStorageKeys } from "@/types/LocalStorageKeys";
 
 export default function LoginPage() {
@@ -144,12 +145,7 @@ export default function LoginPage() {
               </span>
               <hr className="flex-grow border-black/10" />
             </div>
-            <Button
-              className="flex items-center justify-center gap-2 bg-black/5 text-primary border-none py-3 hover:bg-primary hover:text-secondary"
-              type="button"
-            >
-              <FaGoogle className="text-xl" /> Continuer avec Google
-            </Button>
+            <GoogleAuthButton />
             <div className="flex justify-center mt-2">
               <Link
                 className="text-primary underline underline-offset-2 text-base uppercase"

@@ -26,6 +26,7 @@ import { Logo } from "@/components/icons";
 import { User } from "@/types/Database/Entities/User";
 import { UserRoleEnum } from "@/types/Database/Enums/UserRoleEnum";
 import { fetchWrapper } from "@/lib/Fetcher";
+import { useGoogleAuth } from "@/lib/useGoogleAuth";
 import getResponseCodeMessage from "@/utils/ResponseCodesMessages";
 import { LocalStorageKeys } from "@/types/LocalStorageKeys";
 
@@ -37,6 +38,7 @@ export const Header = () => {
   const [user, setUser] = useState<User | null>(null);
 
   const router = useRouter();
+  const { handleGoogleSignOut, session } = useGoogleAuth();
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -66,11 +68,14 @@ export const Header = () => {
   const disconnect = async () => {
     setIsMenuOpen(false);
 
+    if (session) {
+      await handleGoogleSignOut();
+    }
+
     const response = await fetchWrapper("/logout", "POST");
 
     if (response?.ok) {
       localStorage.removeItem(LocalStorageKeys.USER_DATA);
-      router.push("/");
       setUser(null);
 
       addToast({
@@ -80,6 +85,8 @@ export const Header = () => {
         timeout: 3000,
         shouldShowTimeoutProgress: true,
       });
+
+      router.push("/");
     } else {
       const responseData = await response?.json();
       const code = responseData?.code;

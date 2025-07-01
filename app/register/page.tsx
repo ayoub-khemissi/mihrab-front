@@ -3,7 +3,7 @@
 import { Button } from "@heroui/button";
 import { Input } from "@heroui/input";
 import { Link } from "@heroui/link";
-import { FaGoogle, FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
 import { useState } from "react";
 import { useReCaptcha } from "next-recaptcha-v3";
 import { useRouter } from "next/navigation";
@@ -13,6 +13,7 @@ import Section from "@/components/section";
 import HalfPageBg from "@/components/half-page-bg";
 import { fetchWrapper } from "@/lib/Fetcher";
 import getResponseCodeMessage from "@/utils/ResponseCodesMessages";
+import { GoogleAuthButton } from "@/components/google-auth-button";
 import { LocalStorageKeys } from "@/types/LocalStorageKeys";
 
 export default function RegisterPage() {
@@ -140,12 +141,7 @@ export default function RegisterPage() {
               </span>
               <hr className="flex-grow border-black/10" />
             </div>
-            <Button
-              className="flex items-center justify-center gap-2 bg-black/5 text-primary border-none py-3 hover:bg-primary hover:text-secondary"
-              type="button"
-            >
-              <FaGoogle className="text-xl" /> Continuer avec Google
-            </Button>
+            <GoogleAuthButton />
             <div className="flex justify-center mt-2">
               <Link
                 className="text-primary underline underline-offset-2 text-base uppercase"
