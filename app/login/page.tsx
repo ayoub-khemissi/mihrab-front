@@ -80,7 +80,7 @@ export default function LoginPage() {
                 Adresse email
               </label>
               <Input
-                required
+                isRequired
                 className="bg-transparent border-b border-gray-200 rounded-none px-0 py-2 placeholder:text-gray-400 focus:ring-0 focus:border-primary"
                 id="email"
                 name="email"
@@ -99,7 +99,7 @@ export default function LoginPage() {
               </label>
               <div className="relative">
                 <Input
-                  required
+                  isRequired
                   className="relative bg-transparent border-b border-gray-200 rounded-none px-0 py-2 placeholder:text-gray-400 focus:ring-0 focus:border-primary"
                   id="password"
                   name="password"
